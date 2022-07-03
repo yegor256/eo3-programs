@@ -20,6 +20,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-[args...] > program
-  QQ.io.stdout > @
-    "Hello, world!\n"
++alias fixed
+
+[line widths] > tabular
+  joined. > @
+    mappedi.
+      QQ.collections.list
+        split.
+          QQ.txt.text line
+          ","
+      [p i]
+        fixed > @
+          p
+          widths.at i
+    " "

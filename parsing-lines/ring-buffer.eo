@@ -1,0 +1,105 @@
+# The MIT License (MIT)
+#
+# Copyright (c) 2022 Yegor Bugayenko
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included
+# in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+[ring start length] > ring-buffer
+
+  [size] > make
+    ring-buffer > @
+      ram size
+      0
+      0
+
+  [] > empty
+    make 0 > @
+
+  [] > tail
+    mod. > @
+      QQ.math.number
+        start.plus length
+      ring.size
+
+  [] > is-flipped
+    tail.lt start > @
+
+  [] > is-empty
+    length.eq 0 > @
+
+  [dec] > beheaded
+    ring-buffer > @
+      ring
+      mod.
+        QQ.math.number
+          start.plus dec
+        ring.size
+      length.minus dec
+
+  [] > content
+    if. > @
+      is-flipped
+      concat.
+        ring.slice
+          start
+          ring.size.minus start
+        ring.slice
+          0
+          tail
+      ring.slice start length
+
+  [data] > append
+    if. > @
+      gt.
+        data.size.plus length
+        ring.size
+      append.
+        append.
+          ring-buffer
+            ram
+              data.size.plus length
+            0
+            0
+          content
+        data
+      seq
+        if.
+          is-flipped
+          seq
+            write.
+              ring.slice
+                start
+                ring.size.minus start
+              data.slice
+                0
+                ring.size.minus start
+            write.
+              ring.slice
+                0
+                tail
+              data.slice
+                tail
+                data.size.minus tail
+          write.
+            ring.slice start data.size
+            data
+        ring-buffer
+          ring
+          start
+          length.plus data.size

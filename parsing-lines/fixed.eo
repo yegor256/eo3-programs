@@ -20,5 +20,18 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-[] > buffer
-  42 > x
+# Piece of text in a fixed-width box. If the text is larger
+# than the width provided, it will make it shorter and will
+# add ellipsis.
+[txt width] > fixed
+  if. > @
+    txt.length.gt width
+    QQ.txt.sprintf
+      "%s..."
+      txt.slice
+        0
+        width.minus 3
+    if.
+      txt.length.lt width
+      txt
+      txt
