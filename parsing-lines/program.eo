@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 #
-# Copyright (c) 2022-2023 Yegor Bugayenko
+# Copyright (c) 2022-2024 Yegor Bugayenko
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,9 @@
 +alias ring-buffer
 +alias tabular
 
-[args...] > program
+# This is the main object, with the program itself (to be executed
+# from the command line).
+[args] > program
   [buf] > printed
     index-of. > tail!
       QQ.txt.text
@@ -44,20 +46,18 @@
         beheaded.
           buf
           tail.plus 1
-
   [input buffer] > read
     if. > @
       and.
         input.size.eq 0
         buffer.is-empty
-      TRUE
+      true
       read
         input.read 1024
         printed
           append.
             buffer
             input
-
   read > @
     as-input.
       QQ.fs.file "input.txt"
