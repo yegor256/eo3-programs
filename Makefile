@@ -24,13 +24,14 @@ EO_VERSION=0.43.1
 
 .PHONY: .exits
 
-EXITS = $(shell find . -maxdepth 1 -type d -not -name '.*' -exec basename {} \; | sed 's/^/.exits\//g' | sed 's/$$/.txt/g')
+PROGRAMS = $(shell find . -maxdepth 1 -type d -not -name '.*' -exec basename {} \;)
+EXITS = $(shell echo $(PROGRAMS) | sed 's/^/.exits\//g' | sed 's/$$/.txt/g')
 
 all: $(EXITS)
 
-.exits/%.txt: % .exits
+.exits/%.txt: %
 	mkdir -p .exits
-	eoc test "--sources=$<" \
+	eoc test "--sources=$<" "--target=$</.eoc" \
 		"--parser=$(EO_VERSION)" \
 		"--home-tag=$(EO_VERSION)" \
 		--no-color --batch; echo "$$?" > "$@"
@@ -39,5 +40,5 @@ install:
 	npm install --force -g eolang
 
 clean:
-	eoc clean
+	for p in $(PROGRAMS); do eoc clean "--target=$${p}/.eoc"; done
 	rm -rf .exits
