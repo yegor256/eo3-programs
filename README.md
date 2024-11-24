@@ -6,8 +6,8 @@ This is a collection of programs illustrating the
 
 Each program in its own sub-directory.
 
-In order to run them, install 
-[eolang](https://github.com/objectionary/eoc) 
+In order to run them, install
+[eolang](https://github.com/objectionary/eoc)
 and then go to
 the sub-directory you need and run:
 
