@@ -1,6 +1,6 @@
 # EO programs for the "Elegant Objects" book, Vol. 3
 
-[![eoc](https://github.com/yegor256/eo3-programs/actions/workflows/eoc.yml/badge.svg)](https://github.com/yegor256/eo3-programs/actions/workflows/eoc.yml)
+[![eoc](https://github.com/yegor256/eo3-programs/actions/workflows/make.yml/badge.svg)](https://github.com/yegor256/eo3-programs/actions/workflows/make.yml)
 [![Hits-of-Code](https://hitsofcode.com/github/yegor256/eo3-programs)](https://hitsofcode.com/view/github/yegor256/eo3-programs)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yegor256/eo3-programs/blob/master/LICENSE.txt)
 
