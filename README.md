@@ -6,7 +6,7 @@ This is a collection of programs illustrating the
 
 Each program in its own sub-directory.
 
-In order to run them, install[eolang][eoc]
+In order to run them, install [eolang][eoc]
 and then go to the sub-directory you need and run:
 
 ```bash
