@@ -22,7 +22,7 @@
 
 # Piece of text in a fixed-width box. If the text is larger
 # than the width provided, it will make it shorter and will
-# add ellipsis.
+# add ellipsis at the end.
 [txt width] > fixed
   if. > @
     txt.length.gt width

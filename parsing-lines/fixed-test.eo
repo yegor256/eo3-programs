@@ -24,8 +24,8 @@
 +alias assert
 +alias fixed
 
-# This is a unit test for the `fixed` object (to be executed
-# from the command line with the help of `eoc` command line tool).
+# When the text is too long, the `fixed` object makes
+# it shorter with the ellipses at the end.
 [] > makes-text-shorter
   assert > @
     "Joh..."
@@ -33,8 +33,8 @@
       "John Malkovich"
       6
 
-# This is a unit test for the `fixed` object (to be executed
-# from the command line with the help of `eoc` command line tool).
+# When the text is too short, the `fixed` object makes it
+# long enough, filling the difference with spaces.
 [] > makes-text-longer
   assert > @
     "Lebowski    "
@@ -42,11 +42,20 @@
       "Lebowski"
       12
 
-# This is a unit test for the `fixed` object (to be executed
-# from the command line with the help of `eoc` command line tool).
+# When the text is exactly the size required, the `fixed`
+# object doesn't modify it at all.
 [] > keeps-text-same-size
   assert > @
     "Dude"
     fixed
       "Dude"
+      4
+
+# When the text is empty (no characters at all), the `fixed`
+# object can make it long enough too.
+[] > makes-empty-text-longer
+  assert > @
+    "    "
+    fixed
+      ""
       4

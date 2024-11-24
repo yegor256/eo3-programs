@@ -23,7 +23,8 @@
 +alias org.eolang.txt.sprintf
 
 # Assert that two strings are equal to each other (used
-# mostly for tests).
+# mostly for tests). This object is especially helpful
+# for situations when it's not clear why a test fails.
 [a b] > assert
   if. > @
     a.eq b
