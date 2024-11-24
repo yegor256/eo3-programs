@@ -20,85 +20,156 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-[ring start length] > ring-buffer
-  [size] > small
+# This object is an abstraction of a "Ring Buffer" that may receive input
+# from one side and be read from the other side, rolling over when the
+# end of the buffer is reached.
+#
+# The object is immutable (as all objects in EO), but the piece of memory
+# that it encapsulates (the `block` attribute) is volatile: it may change
+# its content and its size too.
+[block start length] > ring-buffer
+  # Create an empty buffer on top of an existing
+  # memory block, which is provided as the only argument.
+  # It doesn't matter how big is the memory block, here
+  # we just assume that the ring buffer will use it, starting
+  # from the first byte.
+  [m] > empty
     ring-buffer > @
-      ram size
+      m
       0
       0
 
-  [] > empty
-    small 0 > @
-
-  [] > tail
-    mod. > @
-      QQ.math.number
-        start.plus length
-      ring.size
-
-  [] > is-flipped
-    tail.lt start > @
-
+  # Returns TRUE if there are no bytes in the buffer. This
+  # doesn't mean that the size of the memory block is zero.
+  # Instead, it means that there are no valuable data in the
+  # memory block at the moment.
   [] > is-empty
     length.eq 0 > @
 
+  # Returns the position of the byte where the next writing
+  # must start. For example,
+  # there are 10 content bytes in the buffer, the start
+  # is at the 20th position, while the size
+  # of the block is 25 bytes. The "cursor" would be at the 6th
+  # position.
+  [] > cursor
+    if. > @
+      length.eq 0
+      start
+      mod.
+        QQ.math.real
+          start.plus length
+        block.size
+
+  # Returns TRUE if the tail of the buffer is ahead of its head,
+  # which is a normal situation. For example, the size of the
+  # buffer is 10 (the sie of the memory block that it encapsulates),
+  # its head is at the 8th position and the length of the content
+  # is five bytes. In this situation, the "currsor" of the buffer (the
+  # position of the first empty byte) would be at the 3rd byte
+  # (if we start counting from zero).
+  [] > is-flipped
+    cursor.lt start > @
+
+  # Return a new ring buffer, with a piece of data removed
+  # from the head.
   [dec] > beheaded
     ring-buffer > @
-      ring
+      block
       mod.
-        QQ.math.number
+        QQ.math.real
           start.plus dec
-        ring.size
+        block.size
       length.minus dec
 
+  # Returns the content of the buffer, as a straight
+  # chain of bytes. The buffer may have two pieces of data,
+  # where first part is the head and the second is the
+  # tail located in the opposite order inside the memory
+  # block. Here, we concatenate them and return.
   [] > content
     if. > @
       is-flipped
       concat.
-        ring.slice
+        block.slice
           start
-          ring.size.minus start
-        ring.slice
+          block.size.minus start
+        block.slice
           0
-          tail
-      ring.slice start length
+          cursor
+      block.slice start length
 
-  [data] > append
+  # The smallest of two numbers.
+  [a b] > min
+    if. > @
+      a.gt b
+      b
+      a
+
+  # The largest of two numbers.
+  [a b] > max
+    if. > @
+      a.gt b
+      a
+      b
+
+  # Make a new ring buffer, encapsulating the same memory
+  # block, but with a different start and length.
+  [data] > with
     if. > @
       gt.
         data.size.plus length
-        ring.size
-      append.
-        append.
-          ring-buffer
-            ram
-              data.size.plus length
-            0
-            0
-          content
-        data
+        block.size
       seq
-        if.
-          is-flipped
-          seq
-            write.
-              ring.slice
-                start
-                ring.size.minus start
-              data.slice
-                0
-                ring.size.minus start
-            write.
-              ring.slice
-                0
-                tail
-              data.slice
-                tail
-                data.size.minus tail
-          write.
-            ring.slice start data.size
+        *
+          block.resize
+            data.size.plus length
+          with.
+            ring-buffer
+              block
+              start
+              length
             data
-        ring-buffer
-          ring
-          start
-          length.plus data.size
+      seq
+        *
+          if.
+            is-flipped
+            seq
+              *
+                write.
+                  block
+                  start
+                  data.slice
+                    0
+                    block.size.minus start
+                write.
+                  block
+                  cursor
+                  data.slice
+                    cursor
+                    data.size.minus cursor
+            seq
+              *
+                write.
+                  block
+                  cursor
+                  data.slice
+                    0
+                    min
+                      data.size
+                      block.size.minus cursor
+                write.
+                  block
+                  0
+                  data.slice
+                    min
+                      data.size
+                      block.size.minus cursor
+                    max
+                      0
+                      data.size.minus
+                        block.size.minus cursor
+          ring-buffer
+            block
+            start
+            length.plus data.size

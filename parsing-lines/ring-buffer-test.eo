@@ -20,32 +20,153 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+junit
++tests
++alias assert
 +alias ring-buffer
-+alias org.eolang.hamcrest.assert-that
 
-[] > appends-and-reads
-  assert-that > @
-    as-string.
-      content.
-        append.
-          append.
-            append.
-              ring-buffer.empty
-              "John".as-bytes
-            " ".as-bytes
-          "Malkovich".as-bytes
-    $.equal-to
-      "John Malkovich"
+# Here, we check that an empty buffer returns true
+# when being checked for emptiness.
+[] > empty-is-empty
+  malloc.of > @
+    200
+    [m]
+      is-empty. > @
+        ring-buffer.empty m
 
+# Here, we check that an empty buffer is not flipped.
+[] > empty-is-not-flipped
+  malloc.of > @
+    33
+    [m]
+      not. > @
+        is-flipped.
+          ring-buffer.empty m
+
+# Here, we calculate the position of the cursor of the buffer,
+# which is the place at which the next byte can be written.
+[] > cursor-of-empty
+  malloc.of > @
+    42
+    [m]
+      assert > @
+        0
+        cursor.
+          ring-buffer.empty m
+
+# Here, we calculate the position of the cursor of the buffer,
+# which is the place at which the next byte can be written.
+[] > cursor-of-non-empty
+  malloc.of > @
+    42
+    [m]
+      assert > @
+        5
+        cursor.
+          with.
+            ring-buffer.empty m
+            "hello".as-bytes
+
+# Here, we take the content from an empty buffer, which
+# must be an empty chain of bytes.
+[] > content-of-empty
+  malloc.of > @
+    17
+    [m]
+      assert > @
+        0
+        size.
+          content.
+            ring-buffer.empty m
+
+# This is a unit test for the `ring-buffer` object (to be executed
+# from the command line with the help of `eoc` command line tool).
+[] > simple-with
+  malloc.of > @
+    42
+    [m]
+      assert > @
+        5
+        size.
+          content.
+            with.
+              ring-buffer.empty m
+              "hello".as-bytes
+
+# This is a unit test for the `ring-buffer` object (to be executed
+# from the command line with the help of `eoc` command line tool).
+[] > simple-double-with
+  malloc.of > @
+    42
+    [m]
+      assert > @
+        "hello, world!"
+        as-string.
+          content.
+            with.
+              with.
+                ring-buffer.empty m
+                "hello".as-bytes
+              ", world!".as-bytes
+
+# This is a unit test for the `ring-buffer` object (to be executed
+# from the command line with the help of `eoc` command line tool).
+[] > simple-empty-with
+  malloc.of > @
+    0
+    [m]
+      assert > @
+        5
+        size.
+          content.
+            with.
+              ring-buffer.empty m
+              "hello".as-bytes
+
+# This is a unit test for the `ring-buffer` object (to be executed
+# from the command line with the help of `eoc` command line tool).
+[] > simple-beheaded
+  malloc.of > @
+    42
+    [m]
+      assert > @
+        "llo, world!"
+        content.
+          beheaded.
+            with.
+              ring-buffer.empty m
+              "hello, world!".as-bytes
+            2
+
+# This is a unit test for the `ring-buffer` object (to be executed
+# from the command line with the help of `eoc` command line tool).
+[] > withs-and-reads
+  malloc.of > @
+    0
+    [m]
+      assert > @
+        "John Malkovich"
+        as-string.
+          content.
+            with.
+              with.
+                with.
+                  ring-buffer.empty m
+                  "John".as-bytes
+                " ".as-bytes
+              "Malkovich".as-bytes
+
+# This is a unit test for the `ring-buffer` object (to be executed
+# from the command line with the help of `eoc` command line tool).
 [] > cuts-off-head
-  assert-that > @
-    as-string.
-      content.
-        beheaded.
-          append.
-            ring-buffer.empty
-            "Jeff Lebowski".as-bytes
-          5
-    $.equal-to
-      "Lebowski"
+  malloc.of > @
+    0
+    [m]
+      assert > @
+        "Lebowski"
+        as-string.
+          content.
+            beheaded.
+              with.
+                ring-buffer.empty m
+                "Jeff Lebowski".as-bytes
+              5

@@ -28,9 +28,10 @@
     txt.length.gt width
     QQ.txt.sprintf
       "%s..."
-      txt.slice
-        0
-        width.minus 3
+      *
+        txt.slice
+          0
+          width.minus 3
     if.
       txt.length.lt width
       chained.

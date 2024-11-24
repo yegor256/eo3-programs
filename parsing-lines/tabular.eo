@@ -20,18 +20,20 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++version 1.1.1
 +alias fixed
 
+# This object is an abstration of a line formatted with tabulars
+# for each element in the `line` collection, with the `widths` provided.
 [line widths] > tabular
   joined. > @
-    QQ.txt.text
-      " "
-      mappedi.
-        QQ.collections.list
-          split.
-            QQ.txt.text line
-            ","
-        [p i]
-          fixed > @
-            p
-            widths.at i
+    QQ.txt.text " "
+    mappedi.
+      QQ.structs.list
+        split.
+          QQ.txt.text line
+          ","
+      [p i] >>
+        fixed > @
+          p
+          widths.at i

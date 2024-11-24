@@ -55,7 +55,7 @@
       read
         input.read 1024
         printed
-          append.
+          with.
             buffer
             input
   read > @

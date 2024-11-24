@@ -20,30 +20,33 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+junit
++tests
++alias assert
 +alias fixed
-+alias org.eolang.hamcrest.assert-that
 
+# This is a unit test for the `fixed` object (to be executed
+# from the command line with the help of `eoc` command line tool).
 [] > makes-text-shorter
-  assert-that > @
+  assert > @
+    "Joh..."
     fixed
       "John Malkovich"
       6
-    $.equal-to
-      "Joh..."
 
+# This is a unit test for the `fixed` object (to be executed
+# from the command line with the help of `eoc` command line tool).
 [] > makes-text-longer
-  assert-that > @
+  assert > @
+    "Lebowski    "
     fixed
       "Lebowski"
       12
-    $.equal-to
-      "Lebowski    "
 
+# This is a unit test for the `fixed` object (to be executed
+# from the command line with the help of `eoc` command line tool).
 [] > keeps-text-same-size
-  assert-that > @
+  assert > @
+    "Dude"
     fixed
       "Dude"
       4
-    $.equal-to
-      "Dude"

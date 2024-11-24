@@ -20,15 +20,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+tests
-+alias assert
-+alias tabular
++alias org.eolang.txt.sprintf
 
-# This is a unit test for the `tabular` object (to be executed
-# from the command line with the help of `eoc` command line tool).
-[] > parses-simple-line
-  assert > @
-    "Joh... J... John Travolta   "
-    tabular
-      "John Malkovich,Johnny Depp,John Travolta"
-      * 6 4 16
+# Assert that two strings are equal to each other (used
+# mostly for tests).
+[a b] > assert
+  if. > @
+    a.eq b
+    true
+    error
+      sprintf
+        "Expected: %s\nReceived: %s\n"
+        * a b
