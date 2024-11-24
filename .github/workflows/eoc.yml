@@ -41,4 +41,4 @@ jobs:
           distribution: 'zulu'
           java-version: 21
       - run: npm install --force -g eolang
-      - run: eoc test --parser=0.43.0 --home-tag=0.43.0
+      - run: eoc test --parser=0.43.0 --home-tag=0.43.0 --no-color --batch
