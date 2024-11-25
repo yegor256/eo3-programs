@@ -110,6 +110,20 @@
 
 # This is a unit test for the `ring-buffer` object (to be executed
 # from the command line with the help of `eoc` command line tool).
+[] > with-flipping
+  malloc.of > @
+    12
+    [m]
+      assert > @
+        10
+        size.
+          content.
+            with.
+              ring-buffer m 8 6
+              "abcd".as-bytes
+
+# This is a unit test for the `ring-buffer` object (to be executed
+# from the command line with the help of `eoc` command line tool).
 [] > simple-empty-with
   malloc.of > @
     0

@@ -60,13 +60,16 @@
           with.
             ring
             input.buffer
-  malloc.of > @
-    0
-    [m] >>
-      open. > @
-        QQ.fs.file "input.txt"
-        "r"
-        [f] >>
-          ^.^.read > @
-            f.read 64
-            ring-buffer.empty m
+  seq > @
+    *
+      malloc.of
+        0
+        [m] >>
+          open. > @
+            QQ.fs.file "input.txt"
+            "r"
+            [f] >>
+              ^.^.read > @
+                f.read 64
+                ring-buffer.empty m
+      true

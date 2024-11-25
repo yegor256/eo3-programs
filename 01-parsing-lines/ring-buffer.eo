@@ -138,16 +138,8 @@
               *
                 write.
                   block
-                  start
-                  data.slice
-                    0
-                    block.size.minus start
-                write.
-                  block
                   cursor
-                  data.slice
-                    cursor
-                    data.size.minus cursor
+                  data
             seq
               *
                 write.

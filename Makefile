@@ -21,6 +21,7 @@
 # SOFTWARE.
 
 EO_VERSION=0.43.1
+HOME_VERSION=0.43.1
 EOC_VERSION=0.24.0
 
 .PHONY: .exits
@@ -30,7 +31,7 @@ SHELL := bash
 
 PROGRAMS = $(shell find . -maxdepth 1 -type d -name '[0-9][0-9]-*' -exec basename {} \;)
 EXITS = $(shell echo $(PROGRAMS) | sed 's/^/.exits\//g' | sed 's/$$/.txt/g')
-OPTS = --no-color --batch "--parser=$(EO_VERSION)" "--home-tag=$(EO_VERSION)"
+OPTS = --no-color --batch "--parser=$(EO_VERSION)" "--home-tag=$(HOME_VERSION)"
 
 all: $(EXITS)
 
