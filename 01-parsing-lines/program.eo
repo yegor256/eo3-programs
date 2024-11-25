@@ -26,39 +26,47 @@
 # This is the main object, with the program itself (to be executed
 # from the command line).
 [args] > program
-  [buf] > printed
+  [ring] > printed
     index-of. > tail!
       QQ.txt.text
-        buf.as-string
+        ring.content.as-string
       "\n"
     if. > @
-      tail.lt 0
-      buf
+      tail.as-number.lt 0
+      ring
       seq
-        QQ.io.stdout
-          QQ.txt.sprintf
-            "%s\n"
-            tabular
-              buf.as-string.slice 0 tail
-              4
-              16
-              12
-        beheaded.
-          buf
-          tail.plus 1
-  [input buffer] > read
+        *
+          QQ.io.stdout
+            QQ.txt.sprintf
+              "%s\n"
+              *
+                tabular
+                  ring.content.as-string.slice
+                    0
+                    tail.as-number
+                  * 20 24 5
+          beheaded.
+            ring
+            tail.as-number.plus 1
+  [input ring] > read
     if. > @
       and.
-        input.size.eq 0
-        buffer.is-empty
+        input.buffer.size.eq 0
+        ring.is-empty
       true
-      read
-        input.read 1024
-        printed
+      ^.read
+        input.read 64
+        ^.printed
           with.
-            buffer
-            input
-  read > @
-    as-input.
-      QQ.fs.file "input.txt"
-    ring-buffer.empty
+            ring
+            input.buffer
+  malloc.of > @
+    0
+    [m] >>
+      open. > @
+        QQ.fs.file "input.txt"
+        "r"
+        [f] >>
+          ^.^.read > @
+            f.read 64
+            ring-buffer.empty m

@@ -21,23 +21,29 @@
 # SOFTWARE.
 
 EO_VERSION=0.43.1
+EOC_VERSION=0.24.0
 
 .PHONY: .exits
+.SHELLFLAGS := -e -o pipefail -c
+.ONESHELL:
+SHELL := bash
 
-PROGRAMS = $(shell find . -maxdepth 1 -type d -not -name '.*' -exec basename {} \;)
+PROGRAMS = $(shell find . -maxdepth 1 -type d -name '[0-9][0-9]-*' -exec basename {} \;)
 EXITS = $(shell echo $(PROGRAMS) | sed 's/^/.exits\//g' | sed 's/$$/.txt/g')
+OPTS = --no-color --batch "--parser=$(EO_VERSION)" "--home-tag=$(EO_VERSION)"
 
 all: $(EXITS)
 
 .exits/%.txt: %
 	mkdir -p .exits
-	eoc test "--sources=$<" "--target=$</.eoc" \
-		"--parser=$(EO_VERSION)" \
-		"--home-tag=$(EO_VERSION)" \
-		--no-color --batch; echo "$$?" > "$@"
+	txt=$$(realpath "$@")
+	cd "$<" || exit 1
+	eoc $(OPTS) test
+	eoc $(OPTS) --alone dataize program
+	echo "$$?" > "$${txt}"
 
 install:
-	npm install --force -g eolang
+	npm install --force -g "eolang@$(EOC_VERSION)"
 
 clean:
 	for p in $(PROGRAMS); do eoc clean "--target=$${p}/.eoc"; done
