@@ -120,16 +120,13 @@
       gt.
         data.size.plus length
         block.size
-      seq
-        *
-          block.resize
+      with.
+        ring-buffer
+          block.resized
             data.size.plus length
-          with.
-            ring-buffer
-              block
-              start
-              length
-            data
+          start
+          length
+        data
       seq
         *
           if.
