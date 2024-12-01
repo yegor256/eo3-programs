@@ -1,3 +1,8 @@
 Don Quixote,Miguel de Cervantes,1615
+Анна Каренина,Лев Толстой,1878
+Das Schloß,Franz Kafka,1926
 Hamlet,William Shakespeare,1599
 The Picture of Dorian Gray,Oscar Fingal O'Fflahertie Wills Wilde,1891
+Le Petit Prince,Antoine de Saint-Exupéry,1943
+Le Comte de Monte-Cristo,Alexandre Dumas,1844
+The Great Gatsby,F. Scott Fitzgerald,1925
