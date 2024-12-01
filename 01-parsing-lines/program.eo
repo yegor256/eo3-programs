@@ -20,28 +20,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++alias index-of-byte
 +alias ring-buffer
 +alias tabular
 
 # This is the main object, with the program itself (to be executed
 # from the command line).
 [args] > program
-  [bytes b] > index-of-byte
-    if. > @
-      bytes.size.eq 0
-      -65536
-      if.
-        eq.
-          bytes.slice 0 1
-          b
-        0
-        plus.
-          ^.index-of-byte
-            bytes.slice 1 (bytes.size.minus 1)
-            b
-          1
   [ring] > printed
-    ^.index-of-byte > tail!
+    index-of-byte > tail!
       ring.content
       0A-
     if. > @
@@ -69,7 +56,7 @@
         ring.is-empty
       true
       ^.consumed
-        input.read 64
+        input.read 16
         ^.printed
           with.
             ring
@@ -84,6 +71,6 @@
             "r"
             [f] >>
               ^.^.consumed > @
-                f.read 64
+                f.read 16
                 ring-buffer.empty m
       true
