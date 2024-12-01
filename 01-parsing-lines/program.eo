@@ -26,11 +26,24 @@
 # This is the main object, with the program itself (to be executed
 # from the command line).
 [args] > program
+  [bytes b] > index-of-byte
+    if. > @
+      bytes.size.eq 0
+      -65536
+      if.
+        eq.
+          bytes.slice 0 1
+          b
+        0
+        plus.
+          ^.index-of-byte
+            bytes.slice 1 (bytes.size.minus 1)
+            b
+          1
   [ring] > printed
-    index-of. > tail!
-      QQ.txt.text
-        ring.content.as-string
-      "\n"
+    ^.index-of-byte > tail!
+      ring.content
+      0A-
     if. > @
       tail.as-number.lt 0
       ring
@@ -41,20 +54,21 @@
               "%s\n"
               *
                 tabular
-                  ring.content.as-string.slice
-                    0
-                    tail.as-number
+                  string
+                    ring.content.slice
+                      0
+                      tail.as-number
                   * 20 24 5
           beheaded.
             ring
             tail.as-number.plus 1
-  [input ring] > read
+  [input ring] > consumed
     if. > @
       and.
         input.buffer.size.eq 0
         ring.is-empty
       true
-      ^.read
+      ^.consumed
         input.read 64
         ^.printed
           with.
@@ -69,7 +83,7 @@
             QQ.fs.file "input.txt"
             "r"
             [f] >>
-              ^.^.read > @
+              ^.^.consumed > @
                 f.read 64
                 ring-buffer.empty m
       true
