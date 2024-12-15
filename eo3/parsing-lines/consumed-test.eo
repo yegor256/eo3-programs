@@ -1,0 +1,86 @@
+# The MIT License (MIT)
+#
+# Copyright (c) 2022-2024 Yegor Bugayenko
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included
+# in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
++alias eo3.parsing-lines.assert
++alias eo3.parsing-lines.consumed
++alias eo3.parsing-lines.ring-buffer
++package eo3.parsing-lines
++tests
++version 0.0.0
+
+# Reads simple stream and passes ring buffer to a simple consumer.
+[] > consumes-short-stream
+  QQ.io.bytes-as-input > i
+    "just a few words here".as-bytes
+  assert > @
+    0
+    malloc.for
+      0
+      [s] >>
+        malloc.of > @
+          64
+          [m] >>
+            size. > @
+              content.
+                consumed
+                  i.read 64
+                  ring-buffer.empty m
+                  [ring]
+                    ring.beheaded > @
+                      ring.length
+
+# Reads simple stream and passes ring buffer to a simple consumer.
+[] > consumes-long-stream
+  QQ.io.bytes-as-input > i
+    """
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Duis sit amet tincidunt est. Phasellus condimentum dui at
+    risus consequat gravida. Vestibulum risus tortor, vehicula
+    id accumsan ut, laoreet vitae ex. Donec porta eleifend velit
+    et rutrum. Nunc dapibus eu tellus nec facilisis. Nam vulputate
+    nunc elit, convallis consectetur quam lobortis eget. Class
+    aptent taciti sociosqu ad litora torquent per conubia nostra,
+    per inceptos himenaeos.
+    """.as-bytes
+  malloc.for > @
+    0
+    [s] >>
+      seq > @
+        *
+          malloc.of
+            0
+            [m] >>
+              content. > @
+                consumed
+                  i.read 1600
+                  ring-buffer.empty m
+                  [ring] >>
+                    seq > @
+                      *
+                        ^.^.s.put
+                          ^.^.s.as-number.plus
+                            ring.length
+                        ring.beheaded
+                          ring.length
+          assert
+            i.bts.size
+            s.as-number

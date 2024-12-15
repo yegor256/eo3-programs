@@ -20,6 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++package eo3.parsing-lines
++version 0.0.0
+
 # This object is an abstraction of a "Ring Buffer" that may receive input
 # from one side and be read from the other side, rolling over when the
 # end of the buffer is reached.

@@ -19,27 +19,35 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
----
-name: make
-'on':
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
-jobs:
-  make:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
-      - uses: actions/setup-java@v4
-        with:
-          distribution: 'zulu'
-          java-version: 21
-      - run: make install
-      - run: make
+
++alias eo3.parsing-lines.index-of-byte
++alias eo3.parsing-lines.tabular
++package eo3.parsing-lines
++version 0.0.0
+
+# Prints the next available line from the buffer and remove it
+# from the buffer. Returns a new buffer, without the line just
+# printed and removed. If there is no such line available for
+# printing, the same buffer is returned.
+[ring] > printed
+  index-of-byte > tail!
+    ring.content
+    0A-
+  if. > @
+    tail.as-number.lt 0
+    ring
+    seq
+      *
+        QQ.io.stdout
+          QQ.txt.sprintf
+            "%s\n"
+            *
+              tabular
+                string
+                  ring.content.slice
+                    0
+                    tail.as-number
+                * 20 24 5
+        beheaded.
+          ring
+          tail.as-number.plus 1

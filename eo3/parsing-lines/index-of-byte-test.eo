@@ -20,23 +20,48 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias org.eolang.txt.sprintf
++alias eo3.parsing-lines.assert
++alias eo3.parsing-lines.index-of-byte
++package eo3.parsing-lines
++tests
++version 0.0.0
 
-# Assert that two strings are equal to each other (used
-# mostly for tests). This object is especially helpful
-# for situations when it's not clear why a test fails.
-[a b] > assert
-  if. > @
-    a.eq b
-    true
-    error
-      if.
-        and.
-          a.as-bytes.size.eq b.as-bytes.size
-          a.as-bytes.size.eq 8
-        sprintf
-          "Expected: %d\nReceived: %d\n"
-          * a b
-        sprintf
-          "Expected: %s\nReceived: %s\n"
-          * a b
+# Finds a single byte where it exists.
+[] > finds-one-byte
+  assert > @
+    6
+    index-of-byte
+      "Hello, друг!".as-bytes
+      " ".as-bytes
+
+# Finds a single byte where it exists, at the first position.
+[] > finds-first-byte
+  assert > @
+    0
+    index-of-byte
+      "John Malkovich".as-bytes
+      "J".as-bytes
+
+# Finds the second byte.
+[] > finds-second-byte
+  assert > @
+    1
+    index-of-byte
+      "John Malkovich".as-bytes
+      "o".as-bytes
+
+# Returns negative when byte not found.
+[] > doesnt-find-anything
+  lt. > @
+    index-of-byte
+      "John Malkovich".as-bytes
+      "\n".as-bytes
+    0
+
+# Returns negative when byte array is empty.
+[] > doesnt-find-anything-in-empty-bytes
+  lt. > @
+    index-of-byte
+      --
+      42-
+    0

@@ -20,57 +20,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias index-of-byte
-+alias ring-buffer
-+alias tabular
++alias eo3.parsing-lines.assert
++alias eo3.parsing-lines.tabular
++package eo3.parsing-lines
++tests
++version 0.0.0
 
-# This is the main object, with the program itself (to be executed
-# from the command line).
-[args] > program
-  [ring] > printed
-    index-of-byte > tail!
-      ring.content
-      0A-
-    if. > @
-      tail.as-number.lt 0
-      ring
-      seq
-        *
-          QQ.io.stdout
-            QQ.txt.sprintf
-              "%s\n"
-              *
-                tabular
-                  string
-                    ring.content.slice
-                      0
-                      tail.as-number
-                  * 20 24 5
-          beheaded.
-            ring
-            tail.as-number.plus 1
-  [input ring] > consumed
-    if. > @
-      and.
-        input.buffer.size.eq 0
-        ring.is-empty
-      true
-      ^.consumed
-        input.read 16
-        ^.printed
-          with.
-            ring
-            input.buffer
-  seq > @
-    *
-      malloc.of
-        0
-        [m] >>
-          open. > @
-            QQ.fs.file "input.txt"
-            "r"
-            [f] >>
-              ^.^.consumed > @
-                f.read 16
-                ring-buffer.empty m
-      true
+# This is a unit test for the `tabular` object (to be executed
+# from the command line with the help of `eoc` command line tool).
+[] > parses-simple-line
+  assert > @
+    "Joh... J... John Travolta   "
+    tabular
+      "John Malkovich,Johnny Depp,John Travolta"
+      * 6 4 16

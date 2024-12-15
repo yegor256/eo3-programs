@@ -20,6 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++package eo3.parsing-lines
++version 0.0.0
+
 # In a byte array, find the index of the first occurrence of a given needle,
 # or return -1 if not found. The needle is either a single byte or
 # a byte array. The byte array is the first argument, and the needle is the second.

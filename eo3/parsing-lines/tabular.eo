@@ -20,8 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+version 1.1.1
-+alias fixed
++alias eo3.parsing-lines.fixed
++package eo3.parsing-lines
++version 0.0.0
 
 # This object is an abstration of a line formatted with tabulars
 # for each element in the `line` collection, with the `widths` provided.

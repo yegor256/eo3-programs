@@ -20,9 +20,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++alias eo3.parsing-lines.assert
++alias eo3.parsing-lines.ring-buffer
++package eo3.parsing-lines
 +tests
-+alias assert
-+alias ring-buffer
++version 0.0.0
 
 # Here, we check that an empty buffer returns true
 # when being checked for emptiness.
@@ -100,7 +102,7 @@
     [m]
       assert > @
         "hello, world!"
-        as-string.
+        string
           content.
             with.
               with.
@@ -159,7 +161,7 @@
     [m]
       assert > @
         "John Malkovich"
-        as-string.
+        string
           content.
             with.
               with.
@@ -177,7 +179,7 @@
     [m]
       assert > @
         "Lebowski"
-        as-string.
+        string
           content.
             beheaded.
               with.

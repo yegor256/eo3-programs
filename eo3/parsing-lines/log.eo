@@ -20,25 +20,20 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# Piece of text in a fixed-width box. If the text is larger
-# than the width provided, it will make it shorter and will
-# add ellipsis at the end.
-[txt width] > fixed
-  if. > @
-    txt.length.gt width
-    QQ.txt.sprintf
-      "%s..."
-      *
-        txt.slice
-          0
-          width.minus 3
-    if.
-      txt.length.lt width
-      chained.
-        QQ.txt.text
-          txt
-        repeated.
++alias org.eolang.io.stdout
++alias org.eolang.txt.sprintf
++package eo3.parsing-lines
++version 0.0.0
+
+# Log the message and then pass control to the object.
+[fmt args kid] > log
+  seq > @
+    *
+      stdout
+        concat.
           QQ.txt.text
-            " "
-          width.minus txt.length
-      txt
+            sprintf
+              fmt
+              args
+          "\n"
+      kid

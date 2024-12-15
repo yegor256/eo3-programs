@@ -20,42 +20,25 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+tests
-+alias assert
-+alias fixed
++alias org.eolang.txt.sprintf
++package eo3.parsing-lines
++version 0.0.0
 
-# When the text is too long, the `fixed` object makes
-# it shorter with the ellipses at the end.
-[] > makes-text-shorter
-  assert > @
-    "Joh..."
-    fixed
-      "John Malkovich"
-      6
-
-# When the text is too short, the `fixed` object makes it
-# long enough, filling the difference with spaces.
-[] > makes-text-longer
-  assert > @
-    "Lebowski    "
-    fixed
-      "Lebowski"
-      12
-
-# When the text is exactly the size required, the `fixed`
-# object doesn't modify it at all.
-[] > keeps-text-same-size
-  assert > @
-    "Dude"
-    fixed
-      "Dude"
-      4
-
-# When the text is empty (no characters at all), the `fixed`
-# object can make it long enough too.
-[] > makes-empty-text-longer
-  assert > @
-    "    "
-    fixed
-      ""
-      4
+# Assert that two strings are equal to each other (used
+# mostly for tests). This object is especially helpful
+# for situations when it's not clear why a test fails.
+[expected actual] > assert
+  if. > @
+    expected.eq actual
+    true
+    error
+      if.
+        and.
+          expected.as-bytes.size.eq actual.as-bytes.size
+          expected.as-bytes.size.eq 8
+        sprintf
+          "Expected: %d\nReceived: %d\n"
+          * expected actual
+        sprintf
+          "Expected: %s\nReceived: %s\n"
+          * expected actual

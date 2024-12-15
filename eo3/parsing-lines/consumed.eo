@@ -20,46 +20,30 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+tests
-+alias assert
-+alias index-of-byte
++alias eo3.parsing-lines.log
++package eo3.parsing-lines
++version 0.0.0
 
-# Finds a single byte where it exists.
-[] > finds-one-byte
-  assert > @
-    6
-    index-of-byte
-      "Hello, друг!".as-bytes
-      " ".as-bytes
-
-# Finds a single byte where it exists, at the first position.
-[] > finds-first-byte
-  assert > @
-    0
-    index-of-byte
-      "John Malkovich".as-bytes
-      "J".as-bytes
-
-# Finds the second byte.
-[] > finds-second-byte
-  assert > @
-    1
-    index-of-byte
-      "John Malkovich".as-bytes
-      "o".as-bytes
-
-# Returns negative when byte not found.
-[] > doesnt-find-anything
-  lt. > @
-    index-of-byte
-      "John Malkovich".as-bytes
-      "\n".as-bytes
-    0
-
-# Returns negative when byte array is empty.
-[] > doesnt-find-anything-in-empty-bytes
-  lt. > @
-    index-of-byte
-      --
-      42-
-    0
+# This object consumes the input ring and passes it to the provided
+# consumer. The consumer is expected to be an object that accepts
+# the input buffer and the ring buffer as arguments. It is supposed
+# to read the input buffer and update the ring buffer accordingly. It
+# must return the ring.
+[input ring consumer] > consumed
+  log > @
+    "Consuming %d bytes, ring size is %d"
+    *
+      input.buffer.size
+      ring.content.size
+    if.
+      and.
+        input.buffer.size.eq 0
+        ring.is-empty
+      ring
+      consumed
+        input.read 16
+        consumer
+          with.
+            ring
+            input.buffer
+        consumer
