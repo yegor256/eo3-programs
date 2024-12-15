@@ -69,18 +69,17 @@
           malloc.of
             0
             [m] >>
-              content. > @
-                consumed
-                  i.read 1600
-                  ring-buffer.empty m
-                  [ring] >>
-                    seq > @
-                      *
-                        ^.^.s.put
-                          ^.^.s.as-number.plus
-                            ring.length
-                        ring.beheaded
+              consumed > @
+                i.read 1600
+                ring-buffer.empty m
+                [ring] >>
+                  seq > @
+                    *
+                      ^.^.s.put
+                        ^.^.s.as-number.plus
                           ring.length
+                      ring.beheaded
+                        ring.length
           assert
             i.bts.size
             s.as-number

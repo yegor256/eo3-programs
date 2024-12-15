@@ -38,9 +38,8 @@
             QQ.fs.file "eo3/parsing-lines/input.txt"
             "r"
             [f] >>
-              content. > @
-                consumed
-                  f.read 100
-                  ring-buffer.empty m
-                  printed
+              consumed > @
+                f.read 100
+                ring-buffer.empty m
+                printed
       true

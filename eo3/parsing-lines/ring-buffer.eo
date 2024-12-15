@@ -31,6 +31,9 @@
 # that it encapsulates (the `block` attribute) is volatile: it may change
 # its content and its size too.
 [block start length] > ring-buffer
+  # The content of it.
+  content > @
+
   # Create an empty buffer on top of an existing
   # memory block, which is provided as the only argument.
   # It doesn't matter how big is the memory block, here

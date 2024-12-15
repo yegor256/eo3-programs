@@ -34,8 +34,7 @@
     malloc.of
       0
       [m] >>
-        content. > @
-          printed
-            with.
-              ring-buffer.empty m
-              "hello\nworld!"
+        printed > @
+          with.
+            ring-buffer.empty m
+            "hello\nworld!"
