@@ -30,10 +30,10 @@
   seq > @
     *
       stdout
-        concat.
-          QQ.txt.text
+        sprintf
+          "\033[90m%s\033[0m\n"
+          *
             sprintf
               fmt
               args
-          "\n"
       kid

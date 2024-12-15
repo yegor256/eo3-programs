@@ -31,10 +31,11 @@
 # must return the ring.
 [input ring consumer] > consumed
   log > @
-    "Consuming %d bytes, ring size is %d: \"%s\""
+    "Consuming %d bytes, ring size is (%d/%d): \"%s\""
     *
       input.buffer.size
       ring.content.size
+      ring.block.size
       string
         ring.content
     if.

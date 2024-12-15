@@ -33,15 +33,18 @@ EO = $(shell find eo3 -type f -name '*.eo')
 JAR = .eoc/eoc.jar
 PROGRAMS = $(shell find eo3 -mindepth 1 -maxdepth 1 -type d -exec basename {} \;)
 EXITS = $(shell echo $(PROGRAMS) | sed 's/^/.exits\//g' | sed 's/$$/.txt/g')
+PASSES = $(shell echo $(PROGRAMS) | sed 's/^/.passes\//g' | sed 's/$$/.txt/g')
 OPTS = --easy --no-color --batch "--parser=$(EO_VERSION)" "--home-tag=$(HOME_VERSION)"
 
-all: test $(EXITS)
+all: $(PASSES) $(EXITS)
 
 $(JAR): $(EO)
 	eoc $(OPTS) link
 
-test: $(JAR)
+.passes/%.txt: eo3/% $(JAR)
+	mkdir -p .passes
 	eoc $(OPTS) --alone test
+	echo "$$?" > "$@"
 
 .exits/%.txt: eo3/% $(JAR)
 	mkdir -p .exits
@@ -54,3 +57,4 @@ install:
 clean:
 	eoc clean
 	rm -rf .exits
+	rm -rf .passes

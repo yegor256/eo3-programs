@@ -52,14 +52,14 @@
 [] > consumes-long-stream
   QQ.io.bytes-as-input > i
     """
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Duis sit amet tincidunt est. Phasellus condimentum dui at
-    risus consequat gravida. Vestibulum risus tortor, vehicula
-    id accumsan ut, laoreet vitae ex. Donec porta eleifend velit
-    et rutrum. Nunc dapibus eu tellus nec facilisis. Nam vulputate
-    nunc elit, convallis consectetur quam lobortis eget. Class
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n
+    Duis sit amet tincidunt est.\n Phasellus condimentum dui at
+    risus consequat gravida.\n Vestibulum risus tortor, vehicula
+    id accumsan ut, laoreet vitae ex.\n Donec porta eleifend velit
+    et rutrum.\n Nunc dapibus eu tellus nec facilisis.\n Nam vulputate
+    nunc elit, convallis consectetur quam lobortis eget.\n Class
     aptent taciti sociosqu ad litora torquent per conubia nostra,
-    per inceptos himenaeos.
+    per inceptos himenaeos.\n
     """.as-bytes
   malloc.for > @
     0
@@ -70,7 +70,7 @@
             0
             [m] >>
               consumed > @
-                i.read 1600
+                i.read 16
                 ring-buffer.empty m
                 [ring] >>
                   seq > @
