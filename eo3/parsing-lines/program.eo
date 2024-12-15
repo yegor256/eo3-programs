@@ -35,7 +35,7 @@
         0
         [m] >>
           open. > @
-            QQ.fs.file "input.txt"
+            QQ.fs.file "eo3/parsing-lines/input.txt"
             "r"
             [f] >>
               consumed > @

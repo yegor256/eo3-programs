@@ -24,28 +24,33 @@ EO_VERSION=0.48.2
 HOME_VERSION=0.48.2
 EOC_VERSION=0.27.1
 
-.PHONY: .exits
+.PHONY: .exits test link install clean
 .SHELLFLAGS := -e -o pipefail -c
 .ONESHELL:
 SHELL := bash
 
-PROGRAMS = $(shell find . -maxdepth 1 -type d -name '[0-9][0-9]-*' -exec basename {} \;)
+EO = $(shell find eo3 -type f -name '*.eo')
+JAR = .eoc/eoc.jar
+PROGRAMS = $(shell find eo3 -mindepth 1 -maxdepth 1 -type d -exec basename {} \;)
 EXITS = $(shell echo $(PROGRAMS) | sed 's/^/.exits\//g' | sed 's/$$/.txt/g')
-OPTS = --no-color --batch "--parser=$(EO_VERSION)" "--home-tag=$(HOME_VERSION)"
+OPTS = --easy --no-color --batch "--parser=$(EO_VERSION)" "--home-tag=$(HOME_VERSION)"
 
-all: $(EXITS)
+all: test $(EXITS)
 
-.exits/%.txt: %
+$(JAR): $(EO)
+	eoc $(OPTS) link
+
+test: $(JAR)
+	eoc $(OPTS) --alone test
+
+.exits/%.txt: eo3/% $(JAR)
 	mkdir -p .exits
-	txt=$$(realpath "$@")
-	cd "$<" || exit 1
-	eoc $(OPTS) test
-	eoc $(OPTS) --alone dataize program
-	echo "$$?" > "$${txt}"
+	eoc $(OPTS) --alone dataize --stack=256M "eo3.$$(basename "$<").program"
+	echo "$$?" > "$@"
 
 install:
 	npm install --force -g "eolang@$(EOC_VERSION)"
 
 clean:
-	for p in $(PROGRAMS); do eoc clean "--target=$${p}/.eoc"; done
+	eoc clean
 	rm -rf .exits
