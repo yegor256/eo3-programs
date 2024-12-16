@@ -28,9 +28,17 @@
 
 # This is a unit test for the `tabular` object (to be executed
 # from the command line with the help of `eoc` command line tool).
-[] > parses-simple-line
+[] > prints-simple-line
   assert > @
     "Joh... J... John Travolta   "
     tabular
       "John Malkovich,Johnny Depp,John Travolta"
       * 6 4 16
+
+# Here, we print a line from longer UTF-8 parts.
+[] > prints-line-from-longer-parts
+  assert > @
+    "Маст... Миха... 1928   "
+    tabular
+      "Мастер и Маргарита,Михаил Афанасьевич Булгаков,1928"
+      * 7 7 7
