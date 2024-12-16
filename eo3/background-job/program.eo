@@ -20,41 +20,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-EO_VERSION=0.48.2
-HOME_VERSION=0.48.2
-EOC_VERSION=0.27.1
++package eo3.background-job
++version 0.0.0
 
-.PHONY: .exits test link install clean
-.SHELLFLAGS := -e -o pipefail -c
-.ONESHELL:
-SHELL := bash
-
-EO = $(shell find eo3 -type f -name '*.eo')
-JAR = .eoc/eoc.jar
-PROGRAMS = $(shell find eo3 -mindepth 1 -maxdepth 1 -type d -exec basename {} \;)
-EXITS = $(shell echo $(PROGRAMS) | awk '{for(i=1;i<=NF;i++) $$i=".exits/"$$i".txt"}1')
-PASSES = $(shell echo $(PROGRAMS) | awk '{for(i=1;i<=NF;i++) $$i=".passes/"$$i".txt"}1')
-OPTS = --easy --no-color --batch "--parser=$(EO_VERSION)" "--home-tag=$(HOME_VERSION)"
-
-all: $(PASSES) $(EXITS)
-
-$(JAR): $(EO)
-	eoc $(OPTS) link
-
-.passes/%.txt: eo3/% $(JAR)
-	mkdir -p .passes
-	eoc $(OPTS) --alone test
-	echo "$$?" > "$@"
-
-.exits/%.txt: eo3/% $(JAR)
-	mkdir -p .exits
-	eoc $(OPTS) --alone dataize --stack=256M "eo3.$$(basename "$<").program"
-	echo "$$?" > "$@"
-
-install:
-	npm install --force -g "eolang@$(EOC_VERSION)"
-
-clean:
-	eoc clean
-	rm -rf .exits
-	rm -rf .passes
+# This is the main object, with the program itself (to be executed
+# from the command line).
+[args] > program
+  QQ.io.stdout > @
+    "Hello, world!\n"
