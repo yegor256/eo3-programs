@@ -28,7 +28,7 @@
 
 # Here, we check that an empty buffer returns true
 # when being checked for emptiness.
-[] > empty-is-empty
+[] > says-empty-is-empty
   malloc.of > @
     200
     [m]
@@ -36,7 +36,7 @@
         ring-buffer.empty m
 
 # Here, we check that an empty buffer is not flipped.
-[] > empty-is-not-flipped
+[] > says-empty-is-not-flipped
   malloc.of > @
     33
     [m]
@@ -44,9 +44,60 @@
         is-flipped.
           ring-buffer.empty m
 
+# Here, we check that a full buffer is not yet flipped.
+[] > says-full-buffer-is-not-flipped
+  malloc.of > @
+    5
+    [m]
+      not. > @
+        is-flipped.
+          with.
+            ring-buffer.empty m
+            "hello"
+
+# Here, we check that a beheaded buffer is not flipped.
+[] > says-beheaded-buffer-is-not-flipped
+  malloc.of > @
+    12
+    [m]
+      not. > @
+        is-flipped.
+          beheaded.
+            with.
+              ring-buffer.empty m
+              "hello, dude"
+            3
+
+# Here, we check that a cursor in a full buffer points to start.
+[] > says-cursor-in-full-buffer-points-to-start
+  malloc.of > @
+    9
+    [m]
+      assert > @
+        0
+        cursor.
+          with.
+            ring-buffer.empty m
+            "some text"
+
+# Here, we check that a beheaded buffer has cursor pointing
+# to zero position.
+[] > says-cursor-points-to-start-in-beheaded-buffer
+  malloc.of > @
+    7
+    [m]
+      assert > @
+        0
+        cursor.
+          beheaded.
+            with.
+              ring-buffer.empty m
+              "just me"
+            3
+
 # Here, we calculate the position of the cursor of the buffer,
 # which is the place at which the next byte can be written.
-[] > cursor-of-empty
+[] > says-cursor-of-empty
   malloc.of > @
     42
     [m]
@@ -57,7 +108,7 @@
 
 # Here, we calculate the position of the cursor of the buffer,
 # which is the place at which the next byte can be written.
-[] > cursor-of-non-empty
+[] > says-cursor-of-non-empty
   malloc.of > @
     42
     [m]
@@ -70,7 +121,7 @@
 
 # Here, we take the content from an empty buffer, which
 # must be an empty chain of bytes.
-[] > content-of-empty
+[] > builds-content-of-empty
   malloc.of > @
     17
     [m]
@@ -82,7 +133,7 @@
 
 # This is a unit test for the `ring-buffer` object (to be executed
 # from the command line with the help of `eoc` command line tool).
-[] > simple-with
+[] > makes-simple-with
   malloc.of > @
     42
     [m]
@@ -94,9 +145,28 @@
               ring-buffer.empty m
               "hello".as-bytes
 
+# Here, we fill up the buffer to its maximum limit and then
+# read back its content, which must be of the same size as
+# the size of the buffer.
+[] > makes-buffer-full
+  malloc.of > @
+    1
+    [m]
+      assert > @
+        48
+        size.
+          content.
+            with.
+              with.
+                with.
+                  ring-buffer.empty m
+                  "0123456789abcdef".as-bytes
+                "0123456789abcdef".as-bytes
+              "0123456789abcdef".as-bytes
+
 # This is a unit test for the `ring-buffer` object (to be executed
 # from the command line with the help of `eoc` command line tool).
-[] > simple-double-with
+[] > makes-simple-double-with
   malloc.of > @
     42
     [m]
@@ -112,7 +182,7 @@
 
 # This is a unit test for the `ring-buffer` object (to be executed
 # from the command line with the help of `eoc` command line tool).
-[] > with-flipping
+[] > makes-with-flipping
   malloc.of > @
     12
     [m]
@@ -126,7 +196,7 @@
 
 # This is a unit test for the `ring-buffer` object (to be executed
 # from the command line with the help of `eoc` command line tool).
-[] > simple-empty-with
+[] > makes-simple-empty-with
   malloc.of > @
     0
     [m]
@@ -140,7 +210,7 @@
 
 # This is a unit test for the `ring-buffer` object (to be executed
 # from the command line with the help of `eoc` command line tool).
-[] > simple-beheaded
+[] > makes-simple-beheaded
   malloc.of > @
     42
     [m]
@@ -153,9 +223,26 @@
               "hello, world!".as-bytes
             2
 
+# Here, we fill up the buffer, then behead it, and then add more
+# content to it, thus making it flip.
+[] > makes-flip-after-beheading
+  malloc.of > @
+    13
+    [m]
+      assert > @
+        " world!ABCDEF"
+        content.
+          with.
+            beheaded.
+              with.
+                ring-buffer.empty m
+                "hello, world!".as-bytes
+              6
+            "ABCDEF"
+
 # This is a unit test for the `ring-buffer` object (to be executed
 # from the command line with the help of `eoc` command line tool).
-[] > withs-and-reads
+[] > makes-withs-and-reads
   malloc.of > @
     0
     [m]
@@ -173,7 +260,7 @@
 
 # This is a unit test for the `ring-buffer` object (to be executed
 # from the command line with the help of `eoc` command line tool).
-[] > cuts-off-head
+[] > makes-cuts-off-head
   malloc.of > @
     0
     [m]

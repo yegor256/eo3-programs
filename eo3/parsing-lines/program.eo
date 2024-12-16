@@ -39,7 +39,7 @@
             "r"
             [f] >>
               consumed > @
-                f.read 100
+                f.read 10
                 ring-buffer.empty m
                 printed
       true

@@ -37,8 +37,8 @@
           expected.as-bytes.size.eq actual.as-bytes.size
           expected.as-bytes.size.eq 8
         sprintf
-          "Expected: %d\nReceived: %d\n"
+          "Expected %d but received %d"
           * expected actual
         sprintf
-          "Expected: %s\nReceived: %s\n"
+          "Expected \"%s\" but received \"%s\""
           * expected actual

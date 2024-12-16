@@ -56,8 +56,12 @@
   # must start. For example,
   # there are 10 content bytes in the buffer, the start
   # is at the 20th position, while the size
-  # of the block is 25 bytes. The "cursor" would be at the 6th
+  # of the block is 25 bytes. The `cursor` would be at the 6th
   # position.
+  #
+  # If the buffer is full, the cursor will point to the byte
+  # that contains the data! Be careful, don't write there! Instead,
+  # increase the size of the `block` first.
   [] > cursor
     if. > @
       length.eq 0
@@ -71,11 +75,13 @@
   # which is a normal situation. For example, the size of the
   # buffer is 10 (the sie of the memory block that it encapsulates),
   # its head is at the 8th position and the length of the content
-  # is five bytes. In this situation, the "currsor" of the buffer (the
+  # is five bytes. In this situation, the `currsor` of the buffer (the
   # position of the first empty byte) would be at the 3rd byte
   # (if we start counting from zero).
   [] > is-flipped
-    cursor.lt start > @
+    gt. > @
+      start.plus length
+      block.size
 
   # Return a new ring buffer, with a piece of data removed
   # from the head.
