@@ -104,16 +104,17 @@
   # tail located in the opposite order inside the memory
   # block. Here, we concatenate them and return.
   [] > content
-    if. > @
-      is-flipped
-      concat.
-        block.slice
-          start
-          block.size.minus start
-        block.slice
-          0
-          cursor
-      block.slice start length
+    as-bytes. > @
+      if.
+        is-flipped
+        concat.
+          block.slice
+            start
+            block.size.minus start
+          block.slice
+            0
+            cursor
+        block.slice start length
 
   # Make it large enough to fit this number of bytes. Here,
   # we return a new buffer that encapsulates the same block,
