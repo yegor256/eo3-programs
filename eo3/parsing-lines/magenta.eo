@@ -20,46 +20,18 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias eo3.parsing-lines.index-of-byte
-+alias eo3.parsing-lines.log
-+alias eo3.parsing-lines.magenta
-+alias eo3.parsing-lines.tabular
 +package eo3.parsing-lines
 +version 0.0.0
 
-# Prints the next available line from the `ring` and remove it
-# from there by beheading the buffer. Returns a new buffer,
-# without the line just
-# printed and removed. If there is no such line available for
-# printing, the same `ring` is returned.
-[ring] > printed
-  as-number. > tail
-    index-of-byte > tail-as-bytes!
-      ring.content
-      0A-
-  if. > @
-    tail.lt 0
-    ring
-    seq
-      *
-        log
-          "line: \"%s\""
-          *
-            ring.content.slice
-              0
-              tail
-          true
-        QQ.io.stdout
-          magenta
-            QQ.txt.sprintf
-              "%s\n"
-              *
-                tabular
-                  string
-                    ring.content.slice
-                      0
-                      tail
-                  * 20 24 5
-        beheaded.
-          ring
-          tail.plus 1
+# Highlight with magenta color all unprintable characters
+# in the string.
+[txt] > magenta
+  replaced. > @
+    QQ.txt.text
+      txt
+    compiled.
+      QQ.txt.regex
+        string
+          2F-00-2F
+    QQ.txt.text
+      "\033[95m?\033[0m"

@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++alias eo3.parsing-lines.magenta
 +alias org.eolang.io.stdout
 +alias org.eolang.txt.sprintf
 +package eo3.parsing-lines
@@ -30,10 +31,11 @@
   seq > @
     *
       stdout
-        sprintf
-          "\033[90m%s\033[0m\n"
-          *
-            sprintf
-              fmt
-              args
+        magenta
+          sprintf
+            "\033[90m%s\033[0m\n"
+            *
+              sprintf
+                fmt
+                args
       kid

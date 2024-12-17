@@ -62,6 +62,10 @@
       "The Picture of Do... Oscar Fingal O'ls... 1891  "
       "The Picture of Dorian Gray,Oscar Fingal O'ls Wilde,1891"
       * 20 20 6
+    *
+      "The Picture of Do... Oscar Fingal O'ls Wilde  1891 "
+      "The Picture of Dorian Gray,Oscar Fingal O'ls Wilde,1891"
+      * 20 24 5
   each. > @
     QQ.structs.list
       pairs
