@@ -20,6 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
++alias eo3.parsing-lines.max
++alias eo3.parsing-lines.min
 +package eo3.parsing-lines
 +version 0.0.0
 
@@ -111,21 +113,11 @@
           cursor
       block.slice start length
 
-  # The smallest of two numbers.
-  [a b] > min
-    if. > @
-      a.gt b
-      b
-      a
-
-  # The largest of two numbers.
-  [a b] > max
-    if. > @
-      a.gt b
-      a
-      b
-
-  # Make it large enough to fit this number of bytes.
+  # Make it large enough to fit this number of bytes. Here,
+  # we return a new buffer that encapsulates the same block,
+  # but resized if necessary. The block is not only being resized,
+  # but the data parts it contains are moved to the right
+  # locations.
   [size] > fit
     seq > @
       *
