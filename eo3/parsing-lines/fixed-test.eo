@@ -61,3 +61,24 @@
     fixed
       ""
       4
+
+# Here, we print a line from longer UTF-8 parts.
+[] > formats-different-cases
+  * > cases
+    *
+      "Oscar Fingal O'ls..."
+      "Oscar Fingal O'ls Wilde"
+      20
+    *
+      "Мих..."
+      "Михаил Афанасьевич Булгаков"
+      6
+  each. > @
+    QQ.structs.list
+      cases
+    [case]
+      assert > @
+        case.at 0
+        fixed
+          case.at 1
+          case.at 2

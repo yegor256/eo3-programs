@@ -21,6 +21,7 @@
 # SOFTWARE.
 
 +alias eo3.parsing-lines.index-of-byte
++alias eo3.parsing-lines.log
 +alias eo3.parsing-lines.tabular
 +package eo3.parsing-lines
 +version 0.0.0
@@ -40,6 +41,13 @@
     ring
     seq
       *
+        log
+          "line: \"%s\""
+          *
+            ring.content.slice
+              0
+              tail
+          true
         QQ.io.stdout
           replaced.
             QQ.txt.text
