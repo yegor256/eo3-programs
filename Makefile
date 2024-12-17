@@ -43,7 +43,7 @@ $(JAR): $(EO)
 	eoc $(OPTS) link
 
 .passed.txt: $(JAR)
-	eoc $(OPTS) --alone test --heap=1G --stack=256M
+	eoc $(OPTS) --alone --verbose test --heap=1G --stack=256M
 	echo "$$?" > "$@"
 
 .exits/%.txt: eo3/% $(JAR)

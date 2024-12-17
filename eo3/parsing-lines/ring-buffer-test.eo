@@ -223,6 +223,59 @@
               "hello, world!".as-bytes
             2
 
+# Here, we make a smaller buffer ready for a large piece of data,
+# making sure it correctly moves data inside (no flipping intended).
+[] > makes-non-flipped-buffer-fit
+  malloc.of > @
+    10
+    [m]
+      assert > @
+        "one two"
+        content.
+          fit.
+            with.
+              ring-buffer.empty m
+              "one two".as-bytes
+            20
+
+# Here, we make a smaller buffer ready for a large piece of data,
+# making sure it correctly moves data inside (placing the tail
+# to the end of the head).
+[] > makes-flipped-buffer-fit
+  malloc.of > @
+    10
+    [m]
+      assert > @
+        "rt text tail"
+        content.
+          fit.
+            with.
+              beheaded.
+                with.
+                  ring-buffer.empty m
+                  "short text".as-bytes
+                3
+              " tail"
+            20
+
+# Here, we enlarge a flipped buffer.
+[] > enlarges-flipped-buffer
+  malloc.of > @
+    9
+    [m]
+      assert > @
+        "thingss that work"
+        content.
+          with.
+            with.
+              beheaded.
+                with.
+                  ring-buffer.empty m
+                  "something".as-bytes
+                4
+              "ss"
+            " that work"
+
 # Here, we fill up the buffer, then behead it, and then add more
 # content to it, thus making it flip.
 [] > makes-flip-after-beheading

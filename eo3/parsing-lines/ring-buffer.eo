@@ -125,52 +125,75 @@
       a
       b
 
-  # Make a new ring buffer, encapsulating the same memory
-  # block, but with a different start and length.
-  [data] > with
-    if. > @
-      gt.
-        data.size.plus length
-        block.size
-      with.
-        ring-buffer
-          block.resized
-            data.size.plus length
-          start
-          length
-        data
-      seq
-        *
-          if.
-            is-flipped
-            seq
-              *
-                write.
-                  block
-                  cursor
-                  data
-            seq
-              *
-                write.
-                  block
-                  cursor
-                  data.slice
-                    0
-                    min
-                      data.size
-                      block.size.minus cursor
-                write.
-                  block
-                  0
-                  data.slice
-                    min
-                      data.size
-                      block.size.minus cursor
-                    max
+  # Make it large enough to fit this number of bytes.
+  [size] > fit
+    seq > @
+      *
+        if.
+          lte.
+            size
+            block.size
+          true
+          seq
+            *
+              block.size > before!
+              is-flipped > flipped!
+              cursor > c!
+              block.resized size
+              if.
+                flipped.as-bool
+                seq
+                  *
+                    min > tail
+                      block.size.minus before
+                      c.as-number
+                    block.write
+                      before
+                      block.slice
+                        0
+                        tail
+                    block.write
                       0
-                      data.size.minus
-                        block.size.minus cursor
-          ring-buffer
-            block
-            start
-            length.plus data.size
+                      block.slice
+                        tail
+                        max
+                          0
+                          c.as-number.minus tail
+                true
+        ring-buffer block start length
+
+  # Make a new ring buffer, encapsulating the same memory
+  # block, but with an added tail.
+  [data] > with
+    seq > @
+      *
+        if.
+          is-flipped.
+            fit
+              data.size.plus length
+          block.write cursor data
+          seq
+            *
+              write.
+                block
+                cursor
+                data.slice
+                  0
+                  min
+                    data.size
+                    block.size.minus cursor
+              write.
+                block
+                0
+                data.slice
+                  min
+                    data.size
+                    block.size.minus cursor
+                  max
+                    0
+                    data.size.minus
+                      block.size.minus cursor
+        ring-buffer
+          block
+          start
+          length.plus data.size
