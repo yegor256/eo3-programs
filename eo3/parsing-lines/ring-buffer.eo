@@ -86,7 +86,9 @@
       block.size
 
   # Return a new ring buffer, with a piece of data removed
-  # from the head.
+  # from the head. The block doesn't change, just the position
+  # of the internal pointers move, thus getting rid of the
+  # necessary head of the text.
   [dec] > beheaded
     ring-buffer > @
       block

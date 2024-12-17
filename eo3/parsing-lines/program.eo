@@ -27,7 +27,9 @@
 +version 0.0.0
 
 # This is the main object, with the program itself (to be executed
-# from the command line).
+# from the command line). It reads lines from the text file one
+# by one and reformats them, printing out a tabular form of fields
+# from the text file.
 [args] > program
   seq > @
     *
