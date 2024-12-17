@@ -30,11 +30,12 @@
 # printed and removed. If there is no such line available for
 # printing, the same buffer is returned.
 [ring] > printed
-  index-of-byte > tail!
-    ring.content
-    0A-
+  as-number. > tail
+    index-of-byte > tail-as-bytes!
+      ring.content
+      0A-
   if. > @
-    tail.as-number.lt 0
+    tail.lt 0
     ring
     seq
       *
@@ -46,8 +47,8 @@
                 string
                   ring.content.slice
                     0
-                    tail.as-number
+                    tail
                 * 20 24 5
         beheaded.
           ring
-          tail.as-number.plus 1
+          tail.plus 1
