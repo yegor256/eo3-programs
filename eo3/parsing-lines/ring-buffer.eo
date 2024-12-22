@@ -142,18 +142,13 @@
                     min > tail
                       block.size.minus before
                       c.as-number
-                    block.write
-                      before
-                      block.slice
-                        0
-                        tail
-                    block.write
+                    block.copy 0 before tail
+                    block.copy
+                      tail
                       0
-                      block.slice
-                        tail
-                        max
-                          0
-                          c.as-number.minus tail
+                      max
+                        0
+                        c.as-number.minus tail
                 true
         ring-buffer block start length
 
