@@ -20,19 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias eo3.parsing-lines.assert
-+package eo3.parsing-lines
-+tests
++package eo3
 +version 0.0.0
 
-# Compares two string values that are equal.
-[] > compares-two-equal-strings
-  assert > @
-    "hello"
-    "hello"
-
-# Compares two boolean values that are equal.
-[] > compares-two-booleans
-  assert > @
-    true
-    5.gt 1
+# The largest of two numbers.
+[a b] > max
+  if. > @
+    b.gt a
+    b
+    a

@@ -20,18 +20,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+package eo3.parsing-lines
++alias eo3.assert
++alias eo3.log
++package eo3
++tests
 +version 0.0.0
 
-# Highlight with magenta color all unprintable characters
-# in the string.
-[txt] > magenta
-  replaced. > @
-    QQ.txt.text
-      txt
-    compiled.
-      QQ.txt.regex
-        string
-          2F-00-2F
-    QQ.txt.text
-      "\033[95m?\033[0m"
+# Simply prints a hello world while running the test.
+[] > prints-to-console
+  assert > @
+    log
+      "Hello, world!"
+      *
+      true
+    true

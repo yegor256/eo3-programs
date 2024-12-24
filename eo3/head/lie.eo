@@ -20,42 +20,19 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-EO_VERSION=1.0-SNAPSHOT
-HOME_VERSION=0.49.2
-EOC_VERSION=0.28.0
++package eo3.head
++version 0.0.0
 
-.PHONY: test link install clean
-.SHELLFLAGS := -e -o pipefail -c
-.ONESHELL:
-SHELL := bash
+# Decorates an existing object such that it becomes `false`.
+[o] > lie
+  o > @
 
-EO = $(shell find eo3 -type f -name '*.eo')
-JAR = .eoc/eoc.jar
-PROGRAMS = $(shell find eo3 -mindepth 1 -maxdepth 1 -type d -exec basename {} \;)
-EXITS = $(shell echo $(PROGRAMS) | awk '{for(i=1;i<=NF;i++) $$i=".exits/"$$i".txt"}1')
-OPTS = --easy --no-color --batch "--parser=$(EO_VERSION)" "--home-tag=$(HOME_VERSION)"
+  [left right] > if
+    right > @
 
-all: .passed.txt $(EXITS)
+  [x] > and
+    false > @
 
-test: .passed.txt
+  [x] > or
+    x > @
 
-$(JAR): $(EO) Makefile
-	eoc $(OPTS) link
-	eoc $(OPTS) --alone phi
-
-.passed.txt: $(JAR) Makefile
-	eoc $(OPTS) --alone --verbose test --heap=1G --stack=256M
-	echo "$$?" > "$@"
-
-.exits/%.txt: eo3/% $(JAR) Makefile
-	mkdir -p .exits
-	eoc $(OPTS) --alone dataize --heap=1G --stack=256M "eo3.$$(basename "$<").program"
-	echo "$$?" > "$@"
-
-install:
-	npm install --force -g "eolang@$(EOC_VERSION)"
-
-clean:
-	eoc clean
-	rm -rf .exits
-	rm -rf .passes

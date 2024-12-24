@@ -20,9 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias eo3.parsing-lines.max
-+alias eo3.parsing-lines.min
-+package eo3.parsing-lines
++alias eo3.max
++alias eo3.min
++package eo3.head
 +version 0.0.0
 
 # This object is an abstraction of a "Ring Buffer" that may receive input
@@ -90,18 +90,34 @@
   # of the internal pointers move, thus getting rid of the
   # necessary head of the text.
   [dec] > beheaded
-    ring-buffer > @
-      block
-      mod.
-        QQ.math.real
-          start.plus dec
-        block.size
-      length.minus dec
+    seq > @
+      *
+        if.
+          dec.lt 0
+          error
+            QQ.txt.sprintf
+              "Can't use %d in beheaded, it's a negative number"
+              * dec
+          true
+        if.
+          dec.gt length
+          error
+            QQ.txt.sprintf
+              "Can't use %d in beheaded, it's larger than the length %d"
+              * dec length
+          true
+        ring-buffer
+          block
+          mod.
+            QQ.math.real
+              start.plus dec
+            block.size
+          length.minus dec
 
   # Returns the content of the buffer, as a straight
   # chain of bytes. The buffer may have two pieces of data,
-  # where first part is the head and the second is the
-  # tail located in the opposite order inside the memory
+  # where the first part is the head and the second is the
+  # tail, located in the opposite order inside the memory
   # block. Here, we concatenate them and return.
   [] > content
     as-bytes. > @
@@ -116,11 +132,12 @@
             cursor
         block.slice start length
 
-  # Make it large enough to fit this number of bytes. Here,
+  # Makes it large enough to fit this number of bytes. Here,
   # we return a new buffer that encapsulates the same block,
   # but resized if necessary. The block is not only being resized,
   # but the data parts it contains are moved to the right
-  # locations.
+  # locations. Even if the `size` is smaller than the current
+  # size of the buffer, the buffer will be resized to fit the data.
   [size] > fit
     seq > @
       *

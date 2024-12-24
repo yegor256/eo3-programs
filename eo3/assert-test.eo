@@ -20,48 +20,19 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias eo3.parsing-lines.assert
-+alias eo3.parsing-lines.index-of-byte
-+package eo3.parsing-lines
++alias eo3.assert
++package eo3
 +tests
 +version 0.0.0
 
-# Finds a single byte where it exists.
-[] > finds-one-byte
+# Compares two string values that are equal.
+[] > compares-two-equal-strings
   assert > @
-    6
-    index-of-byte
-      "Hello, друг!".as-bytes
-      " ".as-bytes
+    "hello"
+    "hello"
 
-# Finds a single byte where it exists, at the first position.
-[] > finds-first-byte
+# Compares two boolean values that are equal.
+[] > compares-two-booleans
   assert > @
-    0
-    index-of-byte
-      "John Malkovich".as-bytes
-      "J".as-bytes
-
-# Finds the second byte.
-[] > finds-second-byte
-  assert > @
-    1
-    index-of-byte
-      "John Malkovich".as-bytes
-      "o".as-bytes
-
-# Returns negative when byte not found.
-[] > doesnt-find-anything
-  lt. > @
-    index-of-byte
-      "John Malkovich".as-bytes
-      "\n".as-bytes
-    0
-
-# Returns negative when byte array is empty.
-[] > doesnt-find-anything-in-empty-bytes
-  lt. > @
-    index-of-byte
-      --
-      42-
-    0
+    true
+    5.gt 1

@@ -20,25 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+package eo3.parsing-lines
++package eo3
 +version 0.0.0
 
-# In a byte array, find the index of the first occurrence of a given needle,
-# or return -1 if not found. The needle is either a single byte or
-# a byte array. The byte array is the first argument, and the needle is the second.
-[bytes needle] > index-of-byte
-  index-of-byte > next!
-    bytes.slice 1 (bytes.size.minus 1)
-    needle
+# The smallest of two numbers.
+[a b] > min
   if. > @
-    bytes.size.eq 0
-    -1
-    if.
-      eq.
-        bytes.slice 0 1
-        needle
-      0
-      if.
-        next.as-number.lt 0
-        next.as-number
-        next.as-number.plus 1
+    a.gt b
+    b
+    a

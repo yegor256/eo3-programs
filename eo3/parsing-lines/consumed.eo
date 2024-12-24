@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias eo3.parsing-lines.log
++alias eo3.log
 +package eo3.parsing-lines
 +version 0.0.0
 

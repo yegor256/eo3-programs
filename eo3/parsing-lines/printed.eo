@@ -20,9 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias eo3.parsing-lines.index-of-byte
-+alias eo3.parsing-lines.log
-+alias eo3.parsing-lines.magenta
++alias eo3.head.index-of-byte
++alias eo3.log
++alias eo3.magenta
 +alias eo3.parsing-lines.tabular
 +package eo3.parsing-lines
 +version 0.0.0

@@ -20,25 +20,61 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias eo3.parsing-lines.consumed
-+alias eo3.parsing-lines.printed
++alias eo3.head.index-of-byte
 +alias eo3.head.ring-buffer
-+package eo3.parsing-lines
++alias eo3.head.unrec
++alias eo3.head.truth
++package eo3.head
 +version 0.0.0
 
-# This is the main object, with the program itself (to be executed
-# from the command line). It reads lines from the text file one
-# by one and reformats them, printing out a tabular form of fields
-# from the text file.
+# This is the entry point to the program. Here, we read data from the
+# file in a loop, save them into a ring buffer, and then print
+# lines from the buffer, until the total count of lines is reached.
 [args] > program
   malloc.of > @
     0
     [m] >>
       open. > @
-        QQ.fs.file "eo3/parsing-lines/input.txt"
+        QQ.fs.file "eo3/head/input.txt"
         "r"
         [f] >>
-          consumed > @
-            f.read 10
-            ring-buffer.empty m
-            printed
+          unrec > @
+            state
+              f
+              5
+              ring-buffer.empty m
+            [s] >>
+              next s > @
+
+  [file left buf] > state
+    [b] > fwd
+      state file left b > @
+    [b] > cut
+      state > @
+        file
+        left.minus 1
+        b
+
+  [s] > next
+    seq > @
+      *
+        s.file.read 24 > p
+        s.buf.with p > n
+        index-of-byte n.content 0A- > idx
+        if.
+          idx.lt 0
+          if.
+            p.size.eq 0
+            false
+            truth
+              s.fwd n
+          seq
+            *
+              QQ.io.stdout
+                n.content.slice
+                  0
+                  idx.plus 1
+              truth
+                s.cut
+                  n.beheaded
+                    idx.plus 1
