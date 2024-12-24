@@ -20,12 +20,16 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+package eo3.parsing-lines
++package eo3.head
 +version 0.0.0
 
-# The smallest of two numbers.
-[a b] > min
+# Turns recursive process into unrecursive. It returns the
+# item returned by the last call of the "fun" object.
+[item fun] > unrec
+  fun item > ret
   if. > @
-    a.gt b
-    b
-    a
+    ret
+    unrec
+      ret
+      fun
+    ret

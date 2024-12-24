@@ -20,25 +20,33 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-+alias org.eolang.txt.sprintf
-+package eo3.parsing-lines
++alias eo3.assert
++alias eo3.head.unrec
++alias eo3.head.lie
++alias eo3.head.truth
++package eo3.head
++tests
 +version 0.0.0
 
-# Assert that two strings are equal to each other (used
-# mostly for tests). This object is especially helpful
-# for situations when it's not clear why a test fails.
-[expected actual] > assert
-  if. > @
-    expected.eq actual
-    true
-    error
-      if.
-        and.
-          expected.as-bytes.size.eq actual.as-bytes.size
-          expected.as-bytes.size.eq 8
-        sprintf
-          "Expected %d but received %d"
-          * expected actual
-        sprintf
-          "Expected \"%s\" but received \"%s\""
-          * expected actual
+# Here, we check that unrec can iterate over just one simple step.
+[] > iterates-one-step
+  assert > @
+    42
+    unrec
+      42
+      [i]
+        lie i > @
+
+# Here, we check that unrec can iterate over a number of
+# steps.
+[] > iterates-a-few-steps
+  assert > @
+    0
+    unrec
+      10
+      [i]
+        if. > @
+          i.eq 0
+          lie i
+          truth
+            i.minus 1
