@@ -75,8 +75,8 @@
                 [ring] >>
                   seq > @
                     *
-                      ^.^.s.put
-                        ^.^.s.as-number.plus
+                      s.put
+                        s.as-number.plus
                           ring.length
                       ring.beheaded
                         ring.length
