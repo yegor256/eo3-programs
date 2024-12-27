@@ -20,8 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-EO_VERSION=0.49.2
-HOME_VERSION=0.49.2
+EO_VERSION=0.50.0
+HOME_VERSION=0.50.0
 EOC_VERSION=0.28.0
 
 .PHONY: test link install clean
@@ -33,7 +33,7 @@ EO = $(shell find eo3 -type f -name '*.eo')
 JAR = .eoc/eoc.jar
 PROGRAMS = $(shell find eo3 -mindepth 1 -maxdepth 1 -type d -exec basename {} \;)
 EXITS = $(shell echo $(PROGRAMS) | awk '{for(i=1;i<=NF;i++) $$i=".exits/"$$i".txt"}1')
-OPTS = --easy --no-color --batch "--parser=$(EO_VERSION)" "--home-tag=$(HOME_VERSION)"
+OPTS = --easy --no-color --batch "--parser=$(EO_VERSION)" "--home-tag=$(HOME_VERSION)" --verbose
 
 all: .passed.txt $(EXITS)
 
