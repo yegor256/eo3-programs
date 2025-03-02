@@ -1,6 +1,8 @@
-package.json
-package-lock.json
+.DS_Store
 .eoc/
-.idea/
 .exits/
+.idea/
 .passed.txt
+node_modules/
+package-lock.json
+package.json
