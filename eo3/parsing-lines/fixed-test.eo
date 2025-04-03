@@ -1,47 +1,43 @@
-# SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
-# SPDX-License-Identifier: MIT
-
 +alias eo3.parsing-lines.assert
 +alias eo3.parsing-lines.fixed
++home https://github.com/yegor256/eo3-programs
 +package eo3.parsing-lines
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
 +tests
 +version 0.0.0
 
 # When the text is too long, the `fixed` object makes
 # it shorter with the ellipses at the end.
-[] > makes-text-shorter
-  assert > @
-    "Михаил Афанась..."
-    fixed
-      "Михаил Афанасьевич"
-      17
+assert > makes-text-shorter
+  "Михаил Афанась..."
+  fixed
+    "Михаил Афанасьевич"
+    17
 
 # When the text is too short, the `fixed` object makes it
 # long enough, filling the difference with spaces.
-[] > makes-text-longer
-  assert > @
-    "Булгаков    "
-    fixed
-      "Булгаков"
-      12
+assert > makes-text-longer
+  "Булгаков    "
+  fixed
+    "Булгаков"
+    12
 
 # When the text is exactly the size required, the `fixed`
 # object doesn't modify it at all.
-[] > keeps-text-same-size
-  assert > @
+assert > keeps-text-same-size
+  "Дюма"
+  fixed
     "Дюма"
-    fixed
-      "Дюма"
-      4
+    4
 
 # When the text is empty (no characters at all), the `fixed`
 # object can make it long enough too.
-[] > makes-empty-text-longer
-  assert > @
-    "    "
-    fixed
-      ""
-      4
+assert > makes-empty-text-longer
+  "    "
+  fixed
+    ""
+    4
 
 # Here, we print a line from longer UTF-8 parts.
 [] > formats-different-cases

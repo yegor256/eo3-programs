@@ -1,17 +1,16 @@
-# SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
-# SPDX-License-Identifier: MIT
-
 +alias eo3.parsing-lines.assert
 +alias eo3.parsing-lines.log
++home https://github.com/yegor256/eo3-programs
 +package eo3.parsing-lines
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
 +tests
 +version 0.0.0
 
 # Simply prints a hello world while running the test.
-[] > prints-to-console
-  assert > @
-    log
-      "Hello, world!"
-      *
-      true
+assert > prints-to-console
+  log
+    "Hello, world!"
+    *
     true
+  true

@@ -1,48 +1,43 @@
-# SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
-# SPDX-License-Identifier: MIT
-
 +alias eo3.parsing-lines.assert
 +alias eo3.parsing-lines.index-of-byte
++home https://github.com/yegor256/eo3-programs
 +package eo3.parsing-lines
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
 +tests
 +version 0.0.0
 
 # Finds a single byte where it exists.
-[] > finds-one-byte
-  assert > @
-    6
-    index-of-byte
-      "Hello, друг!".as-bytes
-      " ".as-bytes
+assert > finds-one-byte
+  6
+  index-of-byte
+    "Hello, друг!".as-bytes
+    " ".as-bytes
 
 # Finds a single byte where it exists, at the first position.
-[] > finds-first-byte
-  assert > @
-    0
-    index-of-byte
-      "John Malkovich".as-bytes
-      "J".as-bytes
+assert > finds-first-byte
+  0
+  index-of-byte
+    "John Malkovich".as-bytes
+    "J".as-bytes
 
 # Finds the second byte.
-[] > finds-second-byte
-  assert > @
-    1
-    index-of-byte
-      "John Malkovich".as-bytes
-      "o".as-bytes
+assert > finds-second-byte
+  1
+  index-of-byte
+    "John Malkovich".as-bytes
+    "o".as-bytes
 
 # Returns negative when byte not found.
-[] > doesnt-find-anything
-  lt. > @
-    index-of-byte
-      "John Malkovich".as-bytes
-      "\n".as-bytes
-    0
+lt. > doesnt-find-anything
+  index-of-byte
+    "John Malkovich".as-bytes
+    "\n".as-bytes
+  0
 
 # Returns negative when byte array is empty.
-[] > doesnt-find-anything-in-empty-bytes
-  lt. > @
-    index-of-byte
-      --
-      42-
-    0
+lt. > doesnt-find-anything-in-empty-bytes
+  index-of-byte
+    --
+    42-
+  0

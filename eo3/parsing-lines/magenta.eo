@@ -1,7 +1,7 @@
-# SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
-# SPDX-License-Identifier: MIT
-
++home https://github.com/yegor256/eo3-programs
 +package eo3.parsing-lines
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
 +version 0.0.0
 
 # Highlight with magenta color all unprintable characters

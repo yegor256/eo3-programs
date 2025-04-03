@@ -1,9 +1,9 @@
-# SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
-# SPDX-License-Identifier: MIT
-
 +alias eo3.parsing-lines.max
 +alias eo3.parsing-lines.min
++home https://github.com/yegor256/eo3-programs
 +package eo3.parsing-lines
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
 +version 0.0.0
 
 # This object is an abstraction of a "Ring Buffer" that may receive input
@@ -32,8 +32,7 @@
   # doesn't mean that the size of the memory block is zero.
   # Instead, it means that there are no valuable data in the
   # memory block at the moment.
-  [] > is-empty
-    length.eq 0 > @
+  length.eq 0 > is-empty
 
   # Returns the position of the byte where the next writing
   # must start. For example,
@@ -45,14 +44,13 @@
   # If the buffer is full, the cursor will point to the byte
   # that contains the data! Be careful, don't write there! Instead,
   # increase the size of the `block` first.
-  [] > cursor
-    if. > @
-      length.eq 0
-      start
-      mod.
-        QQ.math.real
-          start.plus length
-        block.size
+  if. > cursor
+    length.eq 0
+    start
+    mod.
+      QQ.math.real
+        start.plus length
+      block.size
 
   # Returns TRUE if the tail of the buffer is ahead of its head,
   # which is a normal situation. For example, the size of the
@@ -61,10 +59,9 @@
   # is five bytes. In this situation, the `currsor` of the buffer (the
   # position of the first empty byte) would be at the 3rd byte
   # (if we start counting from zero).
-  [] > is-flipped
-    gt. > @
-      start.plus length
-      block.size
+  gt. > is-flipped
+    start.plus length
+    block.size
 
   # Return a new ring buffer, with a piece of data removed
   # from the head. The block doesn't change, just the position
@@ -84,18 +81,17 @@
   # where first part is the head and the second is the
   # tail located in the opposite order inside the memory
   # block. Here, we concatenate them and return.
-  [] > content
-    as-bytes. > @
-      if.
-        is-flipped
-        concat.
-          block.slice
-            start
-            block.size.minus start
-          block.slice
-            0
-            cursor
-        block.slice start length
+  as-bytes. > content
+    if.
+      is-flipped
+      concat.
+        block.slice
+          start
+          block.size.minus start
+        block.slice
+          0
+          cursor
+      block.slice start length
 
   # Make it large enough to fit this number of bytes. Here,
   # we return a new buffer that encapsulates the same block,
