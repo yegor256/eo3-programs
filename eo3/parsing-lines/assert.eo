@@ -23,3 +23,13 @@
         sprintf
           "Expected \"%s\" but received \"%s\""
           * expected actual
+
+  # Compares two string values that are equal.
+  assert +> compares-two-equal-strings
+    "hello"
+    "hello"
+
+  # Compares two boolean values that are equal.
+  assert +> compares-two-booleans
+    true
+    5.gt 1

@@ -26,3 +26,56 @@
             " "
           width.minus txt.length
       txt
+
+  # When the text is too long, the `fixed` object makes
+  # it shorter with the ellipses at the end.
+  assert +> makes-text-shorter
+    "Михаил Афанась..."
+    fixed
+      "Михаил Афанасьевич"
+      17
+
+  # When the text is too short, the `fixed` object makes it
+  # long enough, filling the difference with spaces.
+  assert +> makes-text-longer
+    "Булгаков    "
+    fixed
+      "Булгаков"
+      12
+
+  # When the text is exactly the size required, the `fixed`
+  # object doesn't modify it at all.
+  assert +> keeps-text-same-size
+    "Дюма"
+    fixed
+      "Дюма"
+      4
+
+  # When the text is empty (no characters at all), the `fixed`
+  # object can make it long enough too.
+  assert +> makes-empty-text-longer
+    "    "
+    fixed
+      ""
+      4
+
+  # Here, we print a line from longer UTF-8 parts.
+  [] +> formats-different-cases
+    * > cases
+      *
+        "Oscar Fingal O'ls..."
+        "Oscar Fingal O'ls Wilde"
+        20
+      *
+        "Мих..."
+        "Михаил Афанасьевич Булгаков"
+        6
+    each. > @
+      QQ.structs.list
+        cases
+      [case]
+        assert > @
+          case.at 0
+          fixed
+            case.at 1
+            case.at 2

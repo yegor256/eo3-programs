@@ -20,3 +20,11 @@
                 fmt
                 args
       kid
+
+  # Simply prints a hello world while running the test.
+  assert +> prints-to-console
+    log
+      "Hello, world!"
+      *
+      true
+    true

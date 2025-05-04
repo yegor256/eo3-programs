@@ -23,3 +23,38 @@
         next.as-number.lt 0
         next.as-number
         next.as-number.plus 1
+
+  # Finds a single byte where it exists.
+  assert +> finds-one-byte
+    6
+    index-of-byte
+      "Hello, друг!".as-bytes
+      " ".as-bytes
+
+  # Finds a single byte where it exists, at the first position.
+  assert +> finds-first-byte
+    0
+    index-of-byte
+      "John Malkovich".as-bytes
+      "J".as-bytes
+
+  # Finds the second byte.
+  assert +> finds-second-byte
+    1
+    index-of-byte
+      "John Malkovich".as-bytes
+      "o".as-bytes
+
+  # Returns negative when byte not found.
+  lt. +> doesnt-find-anything
+    index-of-byte
+      "John Malkovich".as-bytes
+      "\n".as-bytes
+    0
+
+  # Returns negative when byte array is empty.
+  lt. +> doesnt-find-anything-in-empty-bytes
+    index-of-byte
+      --
+      42-
+    0
