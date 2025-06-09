@@ -22,46 +22,46 @@
 
   # This is a unit test for the `tabular` object (to be executed
   # from the command line with the help of `eoc` command line tool).
-  assert +> prints-simple-line
-    "Joh... J... John Travolta   "
-    tabular
-      "John Malkovich,Johnny Depp,John Travolta"
-      * 6 4 16
+  [] +> prints-simple-line
+    assert > @
+      "Joh... J... John Travolta   "
+      tabular
+        "John Malkovich,Johnny Depp,John Travolta"
+        * 6 4 16
 
   # Here, we print a line from longer UTF-8 parts.
   [] +> prints-line-from-longer-parts
-    * > pairs
-      *
-        "L... A... 1844"
-        "Le Comte de Monte-Cristo,Alexandre Dumas,1844"
-        * 4 4 4
-      *
-        "Маст... Миха... 1928   "
-        "Мастер и Маргарита,Михаил Афанасьевич Булгаков,1928"
-        * 7 7 7
-      *
-        "Oscar Fingal O'l..."
-        "Oscar Fingal O'ls Wilde"
-        * 19
-      *
-        "Oscar Fingal O'ls... 1981"
-        "Oscar Fingal O'ls Wilde,1981"
-        * 20 4
-      *
-        "B... T... J... W... R..."
-        "Brad Pitt,Tom Cruise,Johnny Depp,Will Smith,Robert DeNiro"
-        * 4 4 4 4 4
-      *
-        "The Picture of Do... Oscar Fingal O'ls... 1891  "
-        "The Picture of Dorian Gray,Oscar Fingal O'ls Wilde,1891"
-        * 20 20 6
-      *
-        "The Picture of Do... Oscar Fingal O'ls Wilde  1891 "
-        "The Picture of Dorian Gray,Oscar Fingal O'ls Wilde,1891"
-        * 20 24 5
     each. > @
       QQ.structs.list
-        pairs
+        *
+          *
+            "L... A... 1844"
+            "Le Comte de Monte-Cristo,Alexandre Dumas,1844"
+            * 4 4 4
+          *
+            "Маст... Миха... 1928   "
+            "Мастер и Маргарита,Михаил Афанасьевич Булгаков,1928"
+            * 7 7 7
+          *
+            "Oscar Fingal O'l..."
+            "Oscar Fingal O'ls Wilde"
+            * 19
+          *
+            "Oscar Fingal O'ls... 1981"
+            "Oscar Fingal O'ls Wilde,1981"
+            * 20 4
+          *
+            "B... T... J... W... R..."
+            "Brad Pitt,Tom Cruise,Johnny Depp,Will Smith,Robert DeNiro"
+            * 4 4 4 4 4
+          *
+            "The Picture of Do... Oscar Fingal O'ls... 1891  "
+            "The Picture of Dorian Gray,Oscar Fingal O'ls Wilde,1891"
+            * 20 20 6
+          *
+            "The Picture of Do... Oscar Fingal O'ls Wilde  1891 "
+            "The Picture of Dorian Gray,Oscar Fingal O'ls Wilde,1891"
+            * 20 24 5
       [pair]
         assert > @
           pair.at 0

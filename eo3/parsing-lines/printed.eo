@@ -46,12 +46,13 @@
           tail.plus 1
 
   # Prints a single line from the buffer.
-  assert +> prints-single-line
-    "world!"
-    malloc.of
-      0
-      [m] >>
-        printed > @
-          with.
-            ring-buffer.empty m
-            "hello\nworld!"
+  [] +> prints-single-line
+    assert > @
+      "world!"
+      malloc.of
+        0
+        [m] >>
+          printed > @
+            with.
+              ring-buffer.empty m
+              "hello\nworld!"

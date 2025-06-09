@@ -29,35 +29,39 @@
 
   # When the text is too long, the `fixed` object makes
   # it shorter with the ellipses at the end.
-  assert +> makes-text-shorter
-    "Михаил Афанась..."
-    fixed
-      "Михаил Афанасьевич"
-      17
+  [] +> makes-text-shorter
+    assert > @
+      "Михаил Афанась..."
+      fixed
+        "Михаил Афанасьевич"
+        17
 
   # When the text is too short, the `fixed` object makes it
   # long enough, filling the difference with spaces.
-  assert +> makes-text-longer
-    "Булгаков    "
-    fixed
-      "Булгаков"
-      12
+  [] +> makes-text-longer
+    assert > @
+      "Булгаков    "
+      fixed
+        "Булгаков"
+        12
 
   # When the text is exactly the size required, the `fixed`
   # object doesn't modify it at all.
-  assert +> keeps-text-same-size
-    "Дюма"
-    fixed
+  [] +> keeps-text-same-size
+    assert > @
       "Дюма"
-      4
+      fixed
+        "Дюма"
+        4
 
   # When the text is empty (no characters at all), the `fixed`
   # object can make it long enough too.
-  assert +> makes-empty-text-longer
-    "    "
-    fixed
-      ""
-      4
+  [] +> makes-empty-text-longer
+    assert > @
+      "    "
+      fixed
+        ""
+        4
 
   # Here, we print a line from longer UTF-8 parts.
   [] +> formats-different-cases
