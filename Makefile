@@ -1,9 +1,9 @@
 # SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 
-EO_VERSION=1.0-SNAPSHOT
+EO_VERSION=0.56.7
 HOME_VERSION=$(EO_VERSION)
-EOC_VERSION=0.29.0
+EOC_VERSION=0.30.1
 
 .PHONY: test link install clean
 .SHELLFLAGS := -e -o pipefail -c

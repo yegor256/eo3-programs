@@ -1,3 +1,4 @@
++alias eo3.parsing-lines.assert
 +alias eo3.parsing-lines.magenta
 +alias org.eolang.io.stdout
 +alias org.eolang.txt.sprintf

@@ -5,6 +5,7 @@
 +package eo3.parsing-lines
 +spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
 +spdx SPDX-License-Identifier: MIT
++unlint incorrect-number-of-attributes
 +version 0.0.0
 
 # This is the main object, with the program itself (to be executed

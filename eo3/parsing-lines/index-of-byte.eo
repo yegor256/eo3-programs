@@ -1,3 +1,4 @@
++alias eo3.parsing-lines.assert
 +home https://github.com/yegor256/eo3-programs
 +package eo3.parsing-lines
 +spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko

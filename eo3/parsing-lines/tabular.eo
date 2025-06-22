@@ -1,3 +1,4 @@
++alias eo3.parsing-lines.assert
 +alias eo3.parsing-lines.fixed
 +home https://github.com/yegor256/eo3-programs
 +package eo3.parsing-lines

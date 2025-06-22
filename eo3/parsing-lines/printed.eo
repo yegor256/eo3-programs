@@ -1,6 +1,8 @@
++alias eo3.parsing-lines.assert
 +alias eo3.parsing-lines.index-of-byte
 +alias eo3.parsing-lines.log
 +alias eo3.parsing-lines.magenta
++alias eo3.parsing-lines.ring-buffer
 +alias eo3.parsing-lines.tabular
 +home https://github.com/yegor256/eo3-programs
 +package eo3.parsing-lines
@@ -15,7 +17,7 @@
 # printing, the same `ring` is returned.
 [ring] > printed
   as-number. > tail
-    index-of-byte > tail-as-bytes!
+    index-of-byte > t-as-bytes!
       ring.content
       0A-
   if. > @
