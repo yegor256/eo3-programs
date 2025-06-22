@@ -9,7 +9,7 @@
 +unlint wrong-sprintf-arguments
 +version 0.0.0
 
-# Log the message and then pass control to the object.
+# A logger that prints a message and then passes control to the object.
 [fmt args kid] > log
   seq > @
     *

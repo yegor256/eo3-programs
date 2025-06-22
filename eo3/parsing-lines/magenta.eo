@@ -4,8 +4,8 @@
 +spdx SPDX-License-Identifier: MIT
 +version 0.0.0
 
-# Highlight with magenta color all unprintable characters
-# in the string.
+# Highlights all unprintable characters in the string
+# with magenta color.
 [txt] > magenta
   replaced. > @
     QQ.txt.text

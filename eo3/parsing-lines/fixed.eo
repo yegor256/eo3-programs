@@ -5,9 +5,9 @@
 +spdx SPDX-License-Identifier: MIT
 +version 0.0.0
 
-# Piece of text in a fixed-width box. If the text is larger
-# than the width provided, it will make it shorter and will
-# add ellipsis at the end.
+# A piece of text in a fixed-width box. If the text is larger
+# than the width provided, it becomes shorter with
+# an ellipsis at the end.
 [txt width] > fixed
   if. > @
     txt.length.gt width
@@ -29,8 +29,7 @@
             width.minus txt.length
       txt
 
-  # When the text is too long, the `fixed` object makes
-  # it shorter with the ellipses at the end.
+  # Makes the text shorter with an ellipsis at the end when it is too long.
   [] +> makes-text-shorter
     assert > @
       "Михаил Афанась..."
@@ -38,8 +37,7 @@
         "Михаил Афанасьевич"
         17
 
-  # When the text is too short, the `fixed` object makes it
-  # long enough, filling the difference with spaces.
+  # Makes the text longer by filling the difference with spaces when it is too short.
   [] +> makes-text-longer
     assert > @
       "Булгаков    "
@@ -47,8 +45,7 @@
         "Булгаков"
         12
 
-  # When the text is exactly the size required, the `fixed`
-  # object doesn't modify it at all.
+  # Keeps the text the same size when it is exactly the required length.
   [] +> keeps-text-same-size
     assert > @
       "Дюма"
@@ -56,8 +53,7 @@
         "Дюма"
         4
 
-  # When the text is empty (no characters at all), the `fixed`
-  # object can make it long enough too.
+  # Makes empty text longer by filling it with spaces.
   [] +> makes-empty-text-longer
     assert > @
       "    "
@@ -65,7 +61,7 @@
         ""
         4
 
-  # Here, we print a line from longer UTF-8 parts.
+  # Formats different cases with UTF-8 text parts.
   [] +> formats-different-cases
     * > cases
       *

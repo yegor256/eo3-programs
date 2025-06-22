@@ -5,9 +5,9 @@
 +spdx SPDX-License-Identifier: MIT
 +version 0.0.0
 
-# Assert that two strings are equal to each other (used
-# mostly for tests). This object is especially helpful
-# for situations when it's not clear why a test fails.
+# An assertion that two strings are equal to each other,
+# used mostly for tests. This object is especially helpful
+# in situations when it's not clear why a test fails.
 [expected actual] > assert
   if. > @
     expected.eq actual
@@ -24,13 +24,13 @@
           "Expected \"%s\" but received \"%s\""
           * expected actual
 
-  # Compares two string values that are equal.
+  # A comparison of two equal string values.
   [] +> compares-two-equal-strings
     assert > @
       "hello"
       "hello"
 
-  # Compares two boolean values that are equal.
+  # A comparison of two equal boolean values.
   [] +> compares-two-booleans
     assert > @
       true

@@ -10,10 +10,9 @@
 +spdx SPDX-License-Identifier: MIT
 +version 0.0.0
 
-# Prints the next available line from the `ring` and remove it
-# from there by beheading the buffer. Returns a new buffer,
-# without the line just
-# printed and removed. If there is no such line available for
+# A printer that outputs the next available line from the `ring` and removes it
+# by beheading the buffer. It is a new buffer
+# without the line just printed and removed. If there is no line available for
 # printing, the same `ring` is returned.
 [ring] > printed
   as-number. > tail

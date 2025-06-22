@@ -7,20 +7,20 @@
 +spdx SPDX-License-Identifier: MIT
 +version 0.0.0
 
-# This object is an abstraction of a "Ring Buffer" that may receive input
-# from one side and be read from the other side, rolling over when the
+# This is a ring buffer abstraction that receives input
+# from one side and can be read from the other side, rolling over when the
 # end of the buffer is reached.
 #
 # The object is immutable (as all objects in EO), but the piece of memory
 # that it encapsulates (the `block` attribute) is volatile: it may change
-# its content and its size too.
+# its content and its size.
 [block start length] > ring-buffer
-  # The content of it.
+  # This is the content of the buffer.
   content > @
 
-  # Create an empty buffer on top of an existing
+  # This is an empty buffer on top of an existing
   # memory block, which is provided as the only argument.
-  # It doesn't matter how big is the memory block, here
+  # It doesn't matter how big the memory block is; here
   # we just assume that the ring buffer will use it, starting
   # from the first byte.
   [m] > empty
@@ -29,22 +29,22 @@
       0
       0
 
-  # Returns TRUE if there are no bytes in the buffer. This
+  # This is a boolean indicator of whether there are no bytes in the buffer. This
   # doesn't mean that the size of the memory block is zero.
   # Instead, it means that there are no valuable data in the
   # memory block at the moment.
   [] > is-empty
     length.eq 0 > @
 
-  # Returns the position of the byte where the next writing
+  # This is the position of the byte where the next writing
   # must start. For example,
-  # there are 10 content bytes in the buffer, the start
+  # if there are 10 content bytes in the buffer, the start
   # is at the 20th position, while the size
-  # of the block is 25 bytes. The `cursor` would be at the 6th
+  # of the block is 25 bytes, the `cursor` would be at the 6th
   # position.
   #
   # If the buffer is full, the cursor will point to the byte
-  # that contains the data! Be careful, don't write there! Instead,
+  # that contains data! Be careful, don't write there! Instead,
   # increase the size of the `block` first.
   [] > cursor
     if. > @
@@ -55,11 +55,11 @@
           start.plus length
         block.size
 
-  # Returns TRUE if the tail of the buffer is ahead of its head,
-  # which is a normal situation. For example, the size of the
+  # This is a boolean indicator of whether the tail of the buffer is ahead of its head,
+  # which is a normal situation. For example, if the size of the
   # buffer is 10 (the size of the memory block that it encapsulates),
   # its head is at the 8th position and the length of the content
-  # is five bytes. In this situation, the `currsor` of the buffer (the
+  # is five bytes. In this situation, the `cursor` of the buffer (the
   # position of the first empty byte) would be at the 3rd byte
   # (if we start counting from zero).
   [] > is-flipped
@@ -67,10 +67,10 @@
       start.plus length
       block.size
 
-  # Return a new ring buffer, with a piece of data removed
-  # from the head. The block doesn't change, just the position
-  # of the internal pointers move, thus getting rid of the
-  # necessary head of the text.
+  # This is a new ring buffer with a piece of data removed
+  # from the head. The block doesn't change; just the position
+  # of the internal pointers moves, thus getting rid of the
+  # specified head of the text.
   [dec] > beheaded
     ring-buffer > @
       block
@@ -80,9 +80,9 @@
         block.size
       length.minus dec
 
-  # Returns the content of the buffer, as a straight
+  # This is the content of the buffer as a straight
   # chain of bytes. The buffer may have two pieces of data,
-  # where first part is the head and the second is the
+  # where the first part is the head and the second is the
   # tail located in the opposite order inside the memory
   # block. Here, we concatenate them and return.
   [] > content
@@ -98,9 +98,9 @@
             cursor
         block.slice start length
 
-  # Make it large enough to fit this number of bytes. Here,
+  # This is a buffer large enough to fit this number of bytes. Here,
   # we return a new buffer that encapsulates the same block,
-  # but resized if necessary. The block is not only being resized,
+  # but resized if necessary. The block is not only resized,
   # but the data parts it contains are moved to the right
   # locations.
   [size] > fit
@@ -134,7 +134,7 @@
                 true
         ring-buffer block start length
 
-  # Make a new ring buffer, encapsulating the same memory
+  # This is a new ring buffer encapsulating the same memory
   # block, but with an added tail.
   [data] > with
     seq > @
@@ -170,7 +170,7 @@
           start
           length.plus data.size
 
-  # Here, we check that an empty buffer returns true
+  # Checks that an empty buffer returns true
   # when being checked for emptiness.
   [] +> says-empty-is-empty
     malloc.of > @
@@ -179,7 +179,7 @@
         is-empty. > @
           ring-buffer.empty m
 
-  # Here, we check that an empty buffer is not flipped.
+  # Checks that an empty buffer is not flipped.
   [] +> says-empty-is-not-flipped
     malloc.of > @
       33
@@ -188,7 +188,7 @@
           is-flipped.
             ring-buffer.empty m
 
-  # Here, we check that a full buffer is not yet flipped.
+  # Checks that a full buffer is not yet flipped.
   [] +> says-full-buffer-is-not-flipped
     malloc.of > @
       5
@@ -199,7 +199,7 @@
               ring-buffer.empty m
               "hello"
 
-  # Here, we check that a beheaded buffer is not flipped.
+  # Checks that a beheaded buffer is not flipped.
   [] +> says-beheaded-buffer-is-not-flipped
     malloc.of > @
       12
@@ -212,7 +212,7 @@
                 "hello, dude"
               3
 
-  # Here, we check that a cursor in a full buffer points to start.
+  # Checks that a cursor in a full buffer points to start.
   [] +> says-cursor-in-full-buffer-points-to-start
     malloc.of > @
       9
@@ -224,7 +224,7 @@
               ring-buffer.empty m
               "some text"
 
-  # Here, we check that a beheaded buffer has cursor pointing
+  # Checks that a beheaded buffer has cursor pointing
   # to zero position.
   [] +> says-cursor-points-to-start-in-beheaded-buffer
     malloc.of > @
@@ -239,7 +239,7 @@
                 "just me"
               3
 
-  # Here, we calculate the position of the cursor of the buffer,
+  # Calculates the position of the cursor of an empty buffer,
   # which is the place at which the next byte can be written.
   [] +> says-cursor-of-empty
     malloc.of > @
@@ -250,7 +250,7 @@
           cursor.
             ring-buffer.empty m
 
-  # Here, we calculate the position of the cursor of the buffer,
+  # Calculates the position of the cursor of a non-empty buffer,
   # which is the place at which the next byte can be written.
   [] +> says-cursor-of-non-empty
     malloc.of > @
@@ -263,7 +263,7 @@
               ring-buffer.empty m
               "hello".as-bytes
 
-  # Here, we take the content from an empty buffer, which
+  # Takes the content from an empty buffer, which
   # must be an empty chain of bytes.
   [] +> builds-content-of-empty
     malloc.of > @
@@ -275,8 +275,7 @@
             content.
               ring-buffer.empty m
 
-  # This is a unit test for the `ring-buffer` object (to be executed
-  # from the command line with the help of `eoc` command line tool).
+  # Creates a simple buffer with "hello" and verifies its content size.
   [] +> makes-simple-with
     malloc.of > @
       42
@@ -289,8 +288,8 @@
                 ring-buffer.empty m
                 "hello".as-bytes
 
-  # Here, we fill up the buffer to its maximum limit and then
-  # read back its content, which must be of the same size as
+  # Fills up the buffer to its maximum limit and then
+  # reads back its content, which must be of the same size as
   # the size of the buffer.
   [] +> makes-buffer-full
     malloc.of > @
@@ -308,8 +307,8 @@
                   "0123456789abcdef".as-bytes
                 "0123456789abcdef".as-bytes
 
-  # This is a unit test for the `ring-buffer` object (to be executed
-  # from the command line with the help of `eoc` command line tool).
+  # Creates a buffer with two consecutive writes ("hello" and ", world!")
+  # and verifies the concatenated content.
   [] +> makes-simple-double-with
     malloc.of > @
       42
@@ -324,8 +323,8 @@
                   "hello".as-bytes
                 ", world!".as-bytes
 
-  # This is a unit test for the `ring-buffer` object (to be executed
-  # from the command line with the help of `eoc` command line tool).
+  # Creates a buffer with specific start position and adds data
+  # to verify flipping behavior works correctly.
   [] +> makes-with-flipping
     malloc.of > @
       12
@@ -338,8 +337,8 @@
                 ring-buffer m 8 6
                 "abcd".as-bytes
 
-  # This is a unit test for the `ring-buffer` object (to be executed
-  # from the command line with the help of `eoc` command line tool).
+  # Creates an empty buffer with zero-sized memory block and adds "hello"
+  # to verify automatic resizing works.
   [] +> makes-simple-empty-with
     malloc.of > @
       0
@@ -352,8 +351,8 @@
                 ring-buffer.empty m
                 "hello".as-bytes
 
-  # This is a unit test for the `ring-buffer` object (to be executed
-  # from the command line with the help of `eoc` command line tool).
+  # Creates a buffer with "hello, world!", removes 2 bytes from the head,
+  # and verifies the remaining content is "llo, world!".
   [] +> makes-simple-beheaded
     malloc.of > @
       42
@@ -367,8 +366,8 @@
                 "hello, world!".as-bytes
               2
 
-  # Here, we make a smaller buffer ready for a large piece of data,
-  # making sure it correctly moves data inside (no flipping intended).
+  # Makes a smaller buffer ready for a large piece of data,
+  # ensuring it correctly moves data inside (no flipping intended).
   [] +> makes-non-flipped-buffer-fit
     malloc.of > @
       10
@@ -382,8 +381,8 @@
                 "one two".as-bytes
               20
 
-  # Here, we make a smaller buffer ready for a large piece of data,
-  # making sure it correctly moves data inside (placing the tail
+  # Makes a smaller buffer ready for a large piece of data,
+  # ensuring it correctly moves data inside (placing the tail
   # to the end of the head).
   [] +> makes-flipped-buffer-fit
     malloc.of > @
@@ -402,7 +401,7 @@
                 " tail"
               20
 
-  # Here, we enlarge a flipped buffer.
+  # Enlarges a flipped buffer by beheading, then adding multiple pieces of data.
   [] +> enlarges-flipped-buffer
     malloc.of > @
       9
@@ -420,7 +419,7 @@
                 "ss"
               " that work"
 
-  # Here, we fill up the buffer, then behead it, and then add more
+  # Fills up the buffer, then beheads it, and then adds more
   # content to it, thus making it flip.
   [] +> makes-flip-after-beheading
     malloc.of > @
@@ -437,8 +436,8 @@
                 6
               "ABCDEF"
 
-  # This is a unit test for the `ring-buffer` object (to be executed
-  # from the command line with the help of `eoc` command line tool).
+  # Creates a buffer with three sequential writes ("John", " ", "Malkovich")
+  # and verifies the concatenated result.
   [] +> makes-with-and-reads
     malloc.of > @
       0
@@ -455,8 +454,8 @@
                   " ".as-bytes
                 "Malkovich".as-bytes
 
-  # This is a unit test for the `ring-buffer` object (to be executed
-  # from the command line with the help of `eoc` command line tool).
+  # Creates a buffer with "Jeff Lebowski", removes 5 bytes from the head,
+  # and verifies the remaining content is "Lebowski".
   [] +> makes-cuts-off-head
     malloc.of > @
       0

@@ -7,11 +7,11 @@
 +spdx SPDX-License-Identifier: MIT
 +version 0.0.0
 
-# This object consumes the input ring and passes it to the provided
-# consumer. The consumer is expected to be an object that accepts
-# the input buffer and the ring buffer as arguments. It is supposed
-# to read the input buffer and update the ring buffer accordingly. It
-# must return the ring.
+# A consumer of the input ring that passes it to the provided
+# consumer. The consumer is an object that accepts
+# the input buffer and the ring buffer as arguments. It
+# reads the input buffer and updates the ring buffer accordingly. It
+# returns the ring.
 [input ring consumer] > consumed
   log > @
     "Consuming %d bytes, ring size is %d/%d (%d+%d)"
