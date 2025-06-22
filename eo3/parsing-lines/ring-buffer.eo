@@ -57,7 +57,7 @@
 
   # Returns TRUE if the tail of the buffer is ahead of its head,
   # which is a normal situation. For example, the size of the
-  # buffer is 10 (the sie of the memory block that it encapsulates),
+  # buffer is 10 (the size of the memory block that it encapsulates),
   # its head is at the 8th position and the length of the content
   # is five bytes. In this situation, the `currsor` of the buffer (the
   # position of the first empty byte) would be at the 3rd byte
@@ -439,7 +439,7 @@
 
   # This is a unit test for the `ring-buffer` object (to be executed
   # from the command line with the help of `eoc` command line tool).
-  [] +> makes-withs-and-reads
+  [] +> makes-with-and-reads
     malloc.of > @
       0
       [m]
