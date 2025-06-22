@@ -22,10 +22,11 @@
       chained.
         QQ.txt.text
           txt
-        repeated.
-          QQ.txt.text
-            " "
-          width.minus txt.length
+        *
+          repeated.
+            QQ.txt.text
+              " "
+            width.minus txt.length
       txt
 
   # When the text is too long, the `fixed` object makes
