@@ -3,7 +3,7 @@
 
 EO_VERSION=0.56.7
 HOME_VERSION=$(EO_VERSION)
-EOC_VERSION=0.30.1
+EOC_VERSION=0.30.2
 
 .PHONY: test link install clean all
 .SHELLFLAGS := -e -o pipefail -c
