@@ -11,17 +11,15 @@
 
 # A logger that prints a message and then passes control to the object.
 [fmt args kid] > log
-  seq > @
-    *
-      stdout
-        magenta
+  seq * > @
+    stdout
+      magenta
+        sprintf *1
+          "\033[90m%s\033[0m\n"
           sprintf
-            "\033[90m%s\033[0m\n"
-            *
-              sprintf
-                fmt
-                args
-      kid
+            fmt
+            args
+    kid
 
   # Simply prints a hello world while running the test.
   [] +> prints-to-console

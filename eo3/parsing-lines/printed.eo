@@ -22,29 +22,28 @@
   if. > @
     tail.lt 0
     ring
-    seq
-      *
-        log
-          "line: \"%s\""
-          *
-            ring.content.slice
-              0
-              tail
-          true
-        QQ.io.stdout
-          magenta
-            QQ.txt.sprintf
-              "%s\n"
-              *
-                tabular
-                  string
-                    ring.content.slice
-                      0
-                      tail
-                  * 20 24 5
-        beheaded.
-          ring
-          tail.plus 1
+    seq *
+      log
+        "line: \"%s\""
+        *
+          ring.content.slice
+            0
+            tail
+        true
+      QQ.io.stdout
+        magenta
+          QQ.txt.sprintf
+            "%s\n"
+            *
+              tabular
+                string
+                  ring.content.slice
+                    0
+                    tail
+                * 20 24 5
+      beheaded.
+        ring
+        tail.plus 1
 
   # Prints a single line from the buffer.
   [] +> prints-single-line

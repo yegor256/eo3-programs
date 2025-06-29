@@ -57,25 +57,23 @@
     malloc.for > @
       0
       [s] >>
-        seq > @
-          *
-            malloc.of
-              0
-              [m] >>
-                consumed > @
-                  i.read 16
-                  ring-buffer.empty m
-                  [ring] >>
-                    seq > @
-                      *
-                        s.put
-                          s.as-number.plus
-                            ring.length
-                        ring.beheaded
-                          ring.length
-            assert
-              i.bts.size
-              s.as-number
+        seq * > @
+          malloc.of
+            0
+            [m] >>
+              consumed > @
+                i.read 16
+                ring-buffer.empty m
+                [ring] >>
+                  seq * > @
+                    s.put
+                      s.as-number.plus
+                        ring.length
+                    ring.beheaded
+                      ring.length
+          assert
+            i.bts.size
+            s.as-number
     QQ.io.bytes-as-input > i
       """
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n

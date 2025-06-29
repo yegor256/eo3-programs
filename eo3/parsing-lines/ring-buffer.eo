@@ -104,71 +104,67 @@
   # but the data parts it contains are moved to the right
   # locations.
   [size] > fit
-    seq > @
-      *
-        if.
-          lte.
-            size
-            block.size
-          true
-          seq
-            *
-              block.size > before!
-              is-flipped > flipped!
-              cursor > c!
-              block.resized size
-              if.
-                flipped.as-bool
-                seq
-                  *
-                    min > tail
-                      block.size.minus before
-                      c.as-number
-                    block.copy 0 before tail
-                    block.copy
-                      tail
-                      0
-                      max
-                        0
-                        c.as-number.minus tail
-                true
-        ring-buffer block start length
+    seq * > @
+      if.
+        lte.
+          size
+          block.size
+        true
+        seq *
+          block.size > before!
+          is-flipped > flipped!
+          cursor > c!
+          block.resized size
+          if.
+            flipped.as-bool
+            seq *
+              min > tail
+                block.size.minus before
+                c.as-number
+              block.copy 0 before tail
+              block.copy
+                tail
+                0
+                max
+                  0
+                  c.as-number.minus tail
+            true
+      ring-buffer block start length
 
   # This is a new ring buffer encapsulating the same memory
   # block, but with an added tail.
   [data] > with
-    seq > @
-      *
-        if.
-          is-flipped.
-            fit
-              data.size.plus length
-          block.write cursor data
-          seq
-            *
-              write.
-                block
-                cursor
-                data.slice
-                  0
-                  min
-                    data.size
-                    block.size.minus cursor
-              write.
-                block
+    seq * > @
+      if.
+        is-flipped.
+          fit
+            data.size.plus length
+        block.write cursor data
+        seq
+          *
+            write.
+              block
+              cursor
+              data.slice
                 0
-                data.slice
-                  min
-                    data.size
+                min
+                  data.size
+                  block.size.minus cursor
+            write.
+              block
+              0
+              data.slice
+                min
+                  data.size
+                  block.size.minus cursor
+                max
+                  0
+                  data.size.minus
                     block.size.minus cursor
-                  max
-                    0
-                    data.size.minus
-                      block.size.minus cursor
-        ring-buffer
-          block
-          start
-          length.plus data.size
+      ring-buffer
+        block
+        start
+        length.plus data.size
 
   # Checks that an empty buffer returns true
   # when being checked for emptiness.
