@@ -336,8 +336,7 @@
   # Creates an empty buffer with zero-sized memory block and adds "hello"
   # to verify automatic resizing works.
   [] +> makes-simple-empty-with
-    malloc.of > @
-      0
+    malloc.empty > @
       [m]
         assert > @
           5
@@ -435,8 +434,7 @@
   # Creates a buffer with three sequential writes ("John", " ", "Malkovich")
   # and verifies the concatenated result.
   [] +> makes-with-and-reads
-    malloc.of > @
-      0
+    malloc.empty > @
       [m]
         assert > @
           "John Malkovich"
@@ -453,8 +451,7 @@
   # Creates a buffer with "Jeff Lebowski", removes 5 bytes from the head,
   # and verifies the remaining content is "Lebowski".
   [] +> makes-cuts-off-head
-    malloc.of > @
-      0
+    malloc.empty > @
       [m]
         assert > @
           "Lebowski"

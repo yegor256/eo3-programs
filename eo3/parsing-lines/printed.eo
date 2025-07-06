@@ -49,8 +49,7 @@
   [] +> prints-single-line
     assert > @
       "world!"
-      malloc.of
-        0
+      malloc.empty
         [m] >>
           printed > @
             with.

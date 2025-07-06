@@ -58,8 +58,7 @@
       0
       [s] >>
         seq * > @
-          malloc.of
-            0
+          malloc.empty
             [m] >>
               consumed > @
                 i.read 16

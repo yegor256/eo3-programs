@@ -13,8 +13,7 @@
 # by one and reformats them, printing out a tabular form of fields
 # from the text file.
 [args] > program
-  malloc.of > @
-    0
+  malloc.empty > @
     [m] >>
       open. > @
         QQ.fs.file "eo3/parsing-lines/input.txt"
