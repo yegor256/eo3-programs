@@ -1,0 +1,12 @@
++home https://github.com/yegor256/eo3-programs
++package eo3.howdy
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
++version 0.0.0
+
+# Greeting.
+[in out human] > greeting
+  out > @
+    QQ.txt.sprintf
+      "Hello, %s!\nHowdy, %s!?\n"
+      * human.name human.name
