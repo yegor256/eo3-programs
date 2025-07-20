@@ -32,7 +32,7 @@ $(JAR): $(EO)
 
 .exits/%.txt: eo3/% $(JAR)
 	mkdir -p .exits
-	echo 'dummy' | eoc $(OPTS) --alone dataize --heap=1G --stack=256M "eo3.$$(basename "$<").program"
+	echo 'Jeff' | eoc $(OPTS) --alone dataize --heap=1G --stack=256M "eo3.$$(basename "$<").program"
 	echo "$$?" > "$@"
 
 install:
