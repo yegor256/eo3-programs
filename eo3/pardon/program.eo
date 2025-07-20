@@ -1,0 +1,15 @@
++alias eo3.howdy.greeting
++alias eo3.pardon.human
++home https://github.com/yegor256/eo3-programs
++package eo3.pardon
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
++version 0.0.0
++unlint incorrect-number-of-attributes
+
+# Main program.
+[args] > program
+  greeting > @
+    QQ.io.stdin
+    QQ.io.stdout
+    human QQ.io.stdin QQ.io.stdout

@@ -1,0 +1,11 @@
++home https://github.com/yegor256/eo3-programs
++package eo3.pardon
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
++version 0.0.0
+
+# A name entered by a human.
+[in out] > name
+  seq * > @
+    out "What is your name? "
+    in.next-line

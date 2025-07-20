@@ -27,6 +27,9 @@ $(JAR): $(EO)
 	eoc $(OPTS) --alone test --heap=1G --stack=256M
 	echo "$$?" > "$@"
 
+.run/%: eo3/% $(JAR)
+	eoc $(OPTS) --alone dataize --heap=1G --stack=256M "eo3.$$(basename "$<").program"
+
 .exits/%.txt: eo3/% $(JAR)
 	mkdir -p .exits
 	echo 'dummy' | eoc $(OPTS) --alone dataize --heap=1G --stack=256M "eo3.$$(basename "$<").program"

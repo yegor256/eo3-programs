@@ -1,0 +1,23 @@
++alias human-name eo3.pardon.name
++home https://github.com/yegor256/eo3-programs
++package eo3.pardon
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
++version 0.0.0
+
+# Human.
+[in out] > human
+  malloc.of > name!
+    100
+    [m] >>
+      seq * > @
+        m.put 0
+        while
+          [i] >>
+            human-name in out > n!
+            seq * > @
+              m.write 0 n.size
+              m.write 8 n
+              n.eq ""
+          [i] >>
+            m.read 8 (m.read 0 8) > @
