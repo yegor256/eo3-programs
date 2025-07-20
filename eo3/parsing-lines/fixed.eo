@@ -11,12 +11,11 @@
 [txt width] > fixed
   if. > @
     txt.length.gt width
-    QQ.txt.sprintf
+    QQ.txt.sprintf *1
       "%s..."
-      *
-        txt.slice
-          0
-          width.minus 3
+      txt.slice
+        0
+        width.minus 3
     if.
       txt.length.lt width
       chained.

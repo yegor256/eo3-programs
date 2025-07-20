@@ -7,6 +7,7 @@
 # Greeting.
 [in out human] > greeting
   out > @
-    QQ.txt.sprintf
+    QQ.txt.sprintf *1
       "Hello, %s!\nHowdy, %s!?\n"
-      * human.name human.name
+      human.name
+      human.name

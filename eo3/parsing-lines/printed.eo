@@ -32,15 +32,14 @@
         true
       QQ.io.stdout
         magenta
-          QQ.txt.sprintf
+          QQ.txt.sprintf *1
             "%s\n"
-            *
-              tabular
-                string
-                  ring.content.slice
-                    0
-                    tail
-                * 20 24 5
+            tabular
+              string
+                ring.content.slice
+                  0
+                  tail
+              * 20 24 5
       beheaded.
         ring
         tail.plus 1
