@@ -1,0 +1,21 @@
++alias eo3.pardon.appellation
++home https://github.com/yegor256/eo3-programs
++package eo3.fit
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
++version 0.0.0
+
+# Human.
+[in out] > human
+  malloc.of > name!
+    6
+    [m] >>
+      appellation in out > a!
+      seq * > @
+        try
+          [] >>
+            m.put a > @
+          [e] >>
+            m.put "noname" > @
+          true > []
+        m.get
