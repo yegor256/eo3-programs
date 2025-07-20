@@ -1,4 +1,4 @@
-+alias human-name eo3.pardon.name
++alias eo3.pardon.appellation
 +home https://github.com/yegor256/eo3-programs
 +package eo3.pardon
 +spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
@@ -14,10 +14,10 @@
         m.put 0
         while
           [i] >>
-            human-name in out > n!
+            appellation in out > a!
             seq * > @
-              m.write 0 n.size
-              m.write 8 n
-              n.eq ""
+              m.write 0 a.size
+              m.write 8 a
+              a.eq ""
           [i] >>
             m.read 8 (m.read 0 8) > @

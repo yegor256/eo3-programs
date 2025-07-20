@@ -5,7 +5,7 @@
 +version 0.0.0
 
 # A name entered by a human.
-[in out] > name
+[in out] > appellation
   seq * > @
     out "What is your name? "
     in.next-line
