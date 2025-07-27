@@ -5,7 +5,7 @@
 +version 0.0.0
 
 # Greeting.
-[in out human] > greeting
+[out human] > greeting
   out > @
     QQ.txt.sprintf *1
       "Hello, %s!\nHowdy, %s!?\n"

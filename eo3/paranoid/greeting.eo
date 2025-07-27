@@ -5,12 +5,12 @@
 +version 0.0.0
 
 # Greeting.
-[in out human] > greeting
+[out human] > greeting
   human.name > n!
   out > @
     QQ.txt.sprintf *1
       "Hello, %s!?\n"
       if.
         n.eq "Walter"
-        error "No way you can enter!"
+        error "You't can enter!"
         n

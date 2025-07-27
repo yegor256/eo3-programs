@@ -10,6 +10,5 @@
 # Main program.
 [args] > program
   greeting > @
-    QQ.io.stdin
     QQ.io.stdout
     human QQ.io.stdin QQ.io.stdout
