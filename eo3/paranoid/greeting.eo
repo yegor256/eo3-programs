@@ -9,8 +9,8 @@
   out > @
     QQ.txt.sprintf *1
       "Hello, %s!?\n"
-      name
-  [] > name
+      guest
+  [] > guest
     human.name > n!
     if. > @
       n.eq "Walter"
