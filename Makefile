@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 
-EO_VERSION=0.57.2
+EO_VERSION=0.57.3
 HOME_VERSION=$(EO_VERSION)
 EOC_VERSION=0.31.0
 
