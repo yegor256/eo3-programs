@@ -6,13 +6,11 @@
 
 # Greeting.
 [in out human] > greeting
+  human.name > n!
   out > @
     QQ.txt.sprintf *1
       "Hello, %s!?\n"
-      guest
-  [] > guest
-    human.name > n!
-    if. > @
-      n.eq "Walter"
-      error "No way you can enter!"
-      n
+      if.
+        n.eq "Walter"
+        error "No way you can enter!"
+        n
