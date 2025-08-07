@@ -8,6 +8,5 @@
 [out human] > greeting
   out > @
     QQ.txt.sprintf *1
-      "Hello, %s!\nHowdy, %s!?\n"
-      human.name
+      "Hello, %s!\nHowdy, %1$s!?\n"
       human.name
