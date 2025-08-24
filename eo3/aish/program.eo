@@ -6,4 +6,35 @@
 
 # Main program.
 [args] > program
-  QQ.io.stdout "ready to go\n" > @
+  "127.0.0.1" > host
+  8080 > port
+  10 > threads
+  listen. > @
+    QQ.net.socket host port
+    seq * >> [s]
+      QQ.io.stdout
+        QQ.txt.sprintf *1
+          "Serving on TCP port #%d (hit Ctrl-C to stop)...\n"
+          port
+      length.
+        par
+          threads
+          mapped.
+            QQ.structs.list
+              QQ.structs.range-of-ints 0 threads
+            frontend s >> [i]
+
+  [server-socket] > frontend
+    while > @
+      true > [i]
+      server-socket.accept >> [i]
+        malloc.of >> [s]
+          16384
+          seq * >> [m]
+            http
+            length.
+              input-length
+                tee-input
+                  s.as-input
+                  m
+            s.send "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\n\r\nHello, world!"
