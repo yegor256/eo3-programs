@@ -6,7 +6,7 @@
 +spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
 +spdx SPDX-License-Identifier: MIT
 +unlint incorrect-number-of-attributes
-+version 0.0.0
++version 0.0.1
 
 # The main object with the program itself, to be executed
 # from the command line. It reads lines from a text file one

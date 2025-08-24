@@ -3,7 +3,7 @@
 +package eo3.parsing-lines
 +spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
 +spdx SPDX-License-Identifier: MIT
-+version 0.0.0
++version 0.0.1
 
 # An assertion that two strings are equal to each other,
 # used mostly for tests. This object is especially helpful

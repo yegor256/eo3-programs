@@ -2,7 +2,7 @@
 +package eo3.paranoid
 +spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
 +spdx SPDX-License-Identifier: MIT
-+version 0.0.0
++version 0.0.1
 
 # Greeting.
 [out human] > greeting

@@ -8,7 +8,7 @@
 +package eo3.parsing-lines
 +spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
 +spdx SPDX-License-Identifier: MIT
-+version 0.0.0
++version 0.0.1
 
 # A printer that outputs the next available line from the `ring` and removes it
 # by beheading the buffer. It is a new buffer

@@ -1,11 +1,9 @@
 +home https://github.com/yegor256/eo3-programs
-+package eo3.pardon
++package eo3.aish
 +spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
 +spdx SPDX-License-Identifier: MIT
 +version 0.0.1
 
-# A name entered by a human.
-[in out] > appellation
-  seq * > @
-    out "What is your name? "
-    in.next-line
+# Main program.
+[args] > program
+  QQ.io.stdout "ready to go\n" > @

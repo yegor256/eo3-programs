@@ -14,7 +14,7 @@ EO = $(shell find eo3 -type f -name '*.eo')
 JAR = .eoc/eoc.jar
 PROGRAMS = $(shell find eo3 -mindepth 1 -maxdepth 1 -type d -exec basename {} \;)
 EXITS = $(shell echo $(PROGRAMS) | awk '{for(i=1;i<=NF;i++) $$i=".exits/"$$i".txt"}1')
-OPTS = --easy --no-color --batch --parser "$(EO_VERSION)" --home-tag "$(HOME_VERSION)"
+OPTS = --verbose --easy --no-color --batch --parser "$(EO_VERSION)" --home-tag "$(HOME_VERSION)"
 
 all: .passed.txt $(EXITS)
 
