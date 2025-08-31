@@ -1,0 +1,13 @@
++home https://github.com/yegor256/eo3-programs
++package eo3.aish
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
++version 0.0.1
+
+# Default HTTP page.
+[method path headers-in body-in] > not-found
+  404 > code
+  * > headers-out
+    * "Content-Type" "text/plain"
+    * "Content-Length" body-out.length
+  "Page not found" > body-out

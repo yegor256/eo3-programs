@@ -1,0 +1,12 @@
++home https://github.com/yegor256/eo3-programs
++package eo3.aish
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
++version 0.0.1
+
+# Copied input to output.
+[input output] > copied
+  QQ.io.input-length > @
+    QQ.io.tee-input
+      input
+      output
