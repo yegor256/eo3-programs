@@ -1,0 +1,19 @@
++home https://github.com/yegor256/eo3-programs
++package eo3.aish
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
++version 0.0.1
+
+# Turns page into an input stream.
+[page] > page-as-input
+  bytes-as-input > @
+    joined.
+      QQ.txt.text ""
+      *
+        QQ.txt.sprintf "HTTP/1.1 %d OK\r\n" * page.code
+        mapped.
+          QQ.structs.list
+            page.headers-out
+          QQ.txt.sprintf "%s: %s\r\n" * (h.at 0) (h.at 1) > [h]
+        "\r\n"
+        page.body-out

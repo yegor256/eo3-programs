@@ -4,10 +4,9 @@
 +spdx SPDX-License-Identifier: MIT
 +version 0.0.1
 
-# Default HTTP page.
+# Page that is not found.
 [method path headers-in body-in] > not-found
-  404 > code
-  * > headers-out
-    * "Content-Type" "text/plain"
-    * "Content-Length" body-out.length
-  "Page not found" > body-out
+  page-with-code > @
+    string-as-page
+      "Page not found"
+    404

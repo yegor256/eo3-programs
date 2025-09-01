@@ -8,6 +8,11 @@
 [method path headers-in body-in] > page
   200 > code
   * > headers-out
-    * "Content-Type" "text/plain"
-    * "Content-Length" body-out.length
-  "Hello, world!" > body-out
+  "" > body-out
+
+  [] +> renders-simple-http-response
+    contains. > @
+      QQ.txt.text
+        input-as-bytes
+          page-as-input page
+      "HTTP/1.1 200 OK"

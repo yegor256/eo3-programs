@@ -1,0 +1,35 @@
++home https://github.com/yegor256/eo3-programs
++package eo3.aish
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
++version 0.0.1
+
+# HTTP request, split into parts.
+[input] > request
+  crumbs.method > method
+  crumbs.path > path
+  tuple-as-headers > headers
+    head.skip 1
+  QQ.structs.list > head'
+    split.
+      parts.at 0
+      "\r\n"
+  input-as-bytes input > req!
+  parts.at 1 > body!
+  (QQ.txt.text request).split "\r\n\r\n" > parts'
+  string-as-crumbs > crumbs
+    head.at 0
+
+  eq. +> takes-method
+    method.
+      request
+        bytes-as-input
+          "GET /hello.html HTTP/1.1"
+    "GET"
+
+  eq. +> takes-path
+    method.
+      request
+        bytes-as-input
+          "GET /hello.html HTTP/1.1"
+    "/hello.html"

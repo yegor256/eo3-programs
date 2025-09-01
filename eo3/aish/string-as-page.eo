@@ -1,3 +1,8 @@
++alias eo3.aish.page-with-body
++alias eo3.aish.page-with-header
++alias eo3.aish.page-as-input
++alias eo3.aish.input-as-bytes
++alias eo3.aish.string-as-page
 +home https://github.com/yegor256/eo3-programs
 +package eo3.aish
 +spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
@@ -6,13 +11,18 @@
 
 # Plain text as HTTP page.
 [s] > string-as-page
-  200 > code
-  * > headers-out
-    * "Content-Type" "text/plain"
-    * "Content-Length" s.as-bytes.size
-  s > body-out
+  page-with-body > @
+    page-with-header
+      page-with-header
+        page
+        "Content-Type: text/plain"
+      QQ.txt.sprintf "Content-Length: %d" * s.as-bytes.size
+    s
 
   [] +> renders-http-response
-    response > @
-      input
-      string-as-page "你好!"
+    contains. > @
+      QQ.txt.text
+        input-as-bytes
+          page-as-input
+            string-as-page "你好!"
+      "HTTP/1.1 200 OK"

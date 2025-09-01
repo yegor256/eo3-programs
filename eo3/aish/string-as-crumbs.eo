@@ -4,10 +4,8 @@
 +spdx SPDX-License-Identifier: MIT
 +version 0.0.1
 
-# HTTP request-response tunnel.
-[input output page] > http
-  copied > @
-    page-as-input
-      page req.method req.path req.headers req.body
-    output
-  request input > req'
+# String into HTTP crumbs.
+[s] > string-as-crumbs
+  parts.at 0 > method
+  parts.at 1 > path
+  s.split " " > parts
