@@ -10,7 +10,7 @@
   go.to > name!
     [g] >>
       compiled. > re
-        QQ.txt.regex "/[A-Z][a-z]+/"
+        txt.regex "/[A-Z][a-z]+/"
       appellation in out > a!
       if. > @
         re.matches a

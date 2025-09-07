@@ -9,20 +9,23 @@
 +spdx SPDX-License-Identifier: MIT
 +version 0.0.1
 
-# Plain text as HTTP page.
+# Plain text as a page.
 [s] > string-as-page
-  page-with-body > @
-    page-with-header
-      page-with-header
-        page
-        "Content-Type: text/plain"
-      QQ.txt.sprintf "Content-Length: %d" * s.as-bytes.size
-    s
+  [] > @
+    [request] > render
+      response-with-body > @
+        response-with-header
+          response-with-header
+            response
+            "Content-Type: text/plain"
+          txt.sprintf "Content-Length: %d" * s.as-bytes.size
+        s
 
   [] +> renders-http-response
     contains. > @
-      QQ.txt.text
-        input-as-bytes
-          page-as-input
+      txt.text
+        response-as-bytes
+          render.
             string-as-page "你好!"
+            request
       "HTTP/1.1 200 OK"

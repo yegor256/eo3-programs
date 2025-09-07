@@ -5,14 +5,20 @@
 +version 0.0.1
 
 # Default HTTP page.
-[method path headers-in body-in] > page
-  200 > code
-  * > headers-out
-  "" > body-out
+[] > page
+  [r] > render
+    response-with-сode > @
+      response-with-body
+        response
+        txt.sprintf *1
+          "Page not found: %s"
+          r.path
+      404
 
   [] +> renders-simple-http-response
     contains. > @
-      QQ.txt.text
-        input-as-bytes
-          page-as-input page
+      txt.text
+        response-as-bytes
+          page.render
+            request
       "HTTP/1.1 200 OK"

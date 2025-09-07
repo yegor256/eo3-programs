@@ -8,12 +8,12 @@
 [method path headers] > fake-request
   bytes-as-input > @
     joined.
-      QQ.txt.text ""
+      txt.text ""
       *
-        QQ.txt.sprintf "%s %s HTTP/1.1\r\n" * method path
+        txt.sprintf "%s %s HTTP/1.1\r\n" * method path
         mapped.
-          QQ.structs.list headers
-          QQ.txt.sprintf "%s: %s\r\n" * (h.at 0) (h.at 1) > [h]
+          structs.list headers
+          txt.sprintf "%s: %s\r\n" * (h.at 0) (h.at 1) > [h]
         "\r\n"
         ""
 

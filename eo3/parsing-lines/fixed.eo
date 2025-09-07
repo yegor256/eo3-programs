@@ -11,7 +11,7 @@
 [txt width] > fixed
   if. > @
     txt.length.gt width
-    QQ.txt.sprintf *1
+    txt.sprintf *1
       "%s..."
       txt.slice
         0
@@ -19,11 +19,11 @@
     if.
       txt.length.lt width
       chained.
-        QQ.txt.text
+        txt.text
           txt
         *
           repeated.
-            QQ.txt.text
+            txt.text
               " "
             width.minus txt.length
       txt
@@ -72,7 +72,7 @@
         "Михаил Афанасьевич Булгаков"
         6
     each. > @
-      QQ.structs.list
+      structs.list
         cases
       [case]
         assert > @

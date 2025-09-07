@@ -6,8 +6,23 @@
 
 # HTTP request-response tunnel.
 [input output page] > http
-  copied > @
-    page-as-input
-      page req.method req.path req.headers req.body
+  io.copied > @
+    bytes-as-input
+      response-as-bytes
+        page.render
+          bytes-as-request
+            input-as-bytes
+              input
     output
-  request input > req'
+
+  [] +> dispatches-simple-request
+    malloc.empty > @
+      seq * >> []
+        http
+          request
+          malloc-as-output m
+          string-as-page "Hello, world!"
+        eq.
+          200
+          code.
+            bytes-as-response m

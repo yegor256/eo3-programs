@@ -51,7 +51,7 @@
       length.eq 0
       start
       mod.
-        QQ.math.real
+        math.real
           start.plus length
         block.size
 
@@ -75,7 +75,7 @@
     ring-buffer > @
       block
       mod.
-        QQ.math.real
+        math.real
           start.plus dec
         block.size
       length.minus dec

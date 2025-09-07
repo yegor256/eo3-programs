@@ -9,10 +9,10 @@
   "127.0.0.1" > host
   8080 > port
   listen. > @
-    QQ.net.socket host port
+    net.socket host port
     seq * >> [ls]
-      QQ.io.stdout
-        QQ.txt.sprintf *1
+      io.stdout
+        txt.sprintf *1
           "Serving on TCP port #%d (hit Ctrl-C to stop)...\n"
           port
       front ls

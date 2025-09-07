@@ -8,5 +8,5 @@
 [t] > tuple-as-headers'
   headers > @
     mapped.
-      QQ.structs.list t
+      structs.list t
       ln.split ": " > [ln]

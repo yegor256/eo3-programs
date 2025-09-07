@@ -16,7 +16,7 @@
   malloc.empty > @
     [m] >>
       open. > @
-        QQ.fs.file "eo3/parsing-lines/input.txt"
+        fs.file "eo3/parsing-lines/input.txt"
         "r"
         [f] >>
           consumed > @

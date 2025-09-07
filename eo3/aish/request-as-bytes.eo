@@ -1,0 +1,20 @@
++home https://github.com/yegor256/eo3-programs
++package eo3.aish
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
++version 0.0.1
+
+# HTTP request to bytes.
+[request] > request-as-bytes
+  joined. > @
+    txt.text ""
+    *
+      txt.sprintf *1
+        "%s %s HTTP/1.1\r\n"
+        request.method
+        request path
+      mapped.
+        structs.list request.headers
+        txt.sprintf "%s: %s\r\n" * (h.at 0) (h.at 1) > [h]
+      "\r\n"
+      request.body
