@@ -1,0 +1,9 @@
+# SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
+# SPDX-License-Identifier: MIT
+---
+# yamllint disable rule:line-length
+docker:
+  image: yegor256/java
+merge:
+  script: |-
+    make
