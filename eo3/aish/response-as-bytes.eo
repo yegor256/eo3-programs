@@ -11,8 +11,17 @@
     *
       txt.sprintf "HTTP/1.1 %d OK\r\n" * r.code
       mapped.
-        structs.list
-          r.headers
+        structs.list r.headers.mapped
         txt.sprintf "%s: %s\r\n" * (h.at 0) (h.at 1) > [h]
       "\r\n"
       r.body
+
+  [] +> renders-response-to-bytes
+    contains. > @
+      txt.text
+        response-as-bytes
+          []
+            404 > code
+            * > headers
+            -- > body
+      "HTTP/1.1 200 OK"
