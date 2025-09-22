@@ -4,7 +4,6 @@
 +spdx SPDX-License-Identifier: MIT
 +version 0.0.1
 
-# Main program.
 [args] > program
   "127.0.0.1" > host
   8080 > port
@@ -19,6 +18,6 @@
 
   [ls] > front
     ls.accept > @
-      par > [s]
+      par * > [s]
         http s.as-input s.as-output page
         front ls

@@ -4,15 +4,23 @@
 +spdx SPDX-License-Identifier: MIT
 +version 0.0.1
 
-# Turns response into bytes.
 [r] > response-as-bytes
   joined. > @
     txt.text ""
     *
-      txt.sprintf "HTTP/1.1 %d OK\r\n" * r.code
+      txt.sprintf *1
+        "HTTP/1.1 %d %s\r\n"
+        r.code
+        switch *
+          * (code.eq 200) "OK"
+          * (code.eq 404) "Not found"
+          * true "?"
       mapped.
-        structs.list r.headers.mapped
-        txt.sprintf "%s: %s\r\n" * (h.at 0) (h.at 1) > [h]
+        ss.list r.headers
+        txt.sprintf *1 >> [h]
+          "%s: %s\r\n"
+          h.at 0
+          h.at 1
       "\r\n"
       r.body
 
@@ -24,4 +32,4 @@
             404 > code
             * > headers
             -- > body
-      "HTTP/1.1 200 OK"
+      "HTTP/1.1 404 Not found"

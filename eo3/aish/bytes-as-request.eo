@@ -4,32 +4,30 @@
 +spdx SPDX-License-Identifier: MIT
 +version 0.0.1
 
-# Input turned into a request.
-[input] > input-as-request
+[b] > bytes-as-request
   crumbs.method > method
   crumbs.path > path
   tuple-as-headers > headers
     head.skip 1
-  structs.list > head'
+  structs.list > head
     split.
       parts.at 0
       "\r\n"
-  input-as-bytes input > req!
-  parts.at 1 > body!
-  (txt.text request).split "\r\n\r\n" > parts'
+  parts.at 1 > body
+  (txt.text b).split "\r\n\r\n" > parts
   string-as-crumbs > crumbs
     head.at 0
 
-  eq. +> takes-method
-    method.
-      request
-        bytes-as-input
+  [] +> takes-method
+    eq. > @
+      method.
+        bytes-as-request
           "GET /hello.html HTTP/1.1"
-    "GET"
+      "GET"
 
-  eq. +> takes-path
-    method.
-      request
-        bytes-as-input
+  [] +> takes-path
+    eq. > @
+      method.
+        bytes-as-request
           "GET /hello.html HTTP/1.1"
-    "/hello.html"
+      "/hello.html"
