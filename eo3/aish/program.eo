@@ -8,10 +8,10 @@
   "127.0.0.1" > host
   8080 > port
   listen. > @
-    net.socket host port
+    nk.socket host port
     seq * >> [ls]
       io.stdout
-        txt.sprintf *1
+        tt.sprintf *1
           "Serving on TCP port #%d (hit Ctrl-C to stop)...\n"
           port
       front ls

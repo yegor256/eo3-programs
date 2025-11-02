@@ -10,22 +10,22 @@
 # an ellipsis at the end.
 [txt width] > fixed
   if. > @
-    txt.length.gt width
-    txt.sprintf *1
+    tt.length.gt width
+    tt.sprintf *1
       "%s..."
-      txt.slice
+      tt.slice
         0
         width.minus 3
     if.
-      txt.length.lt width
+      tt.length.lt width
       chained.
-        txt.text
+        tt.text
           txt
         *
           repeated.
-            txt.text
+            tt.text
               " "
-            width.minus txt.length
+            width.minus tt.length
       txt
 
   # Makes the text shorter with an ellipsis at the end when it is too long.
@@ -72,7 +72,7 @@
         "Михаил Афанасьевич Булгаков"
         6
     each. > @
-      structs.list
+      ss.list
         cases
       [case]
         assert > @

@@ -9,12 +9,12 @@
   crumbs.path > path
   tuple-as-headers > headers
     head.skip 1
-  structs.list > head
+  ss.list > head
     split.
       parts.at 0
       "\r\n"
   parts.at 1 > body
-  (txt.text b).split "\r\n\r\n" > parts
+  (tt.text b).split "\r\n\r\n" > parts
   string-as-crumbs > crumbs
     head.at 0
 

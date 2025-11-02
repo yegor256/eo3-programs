@@ -1,7 +1,3 @@
-+alias eo3.aish.page-with-body
-+alias eo3.aish.page-with-header
-+alias eo3.aish.page-as-input
-+alias eo3.aish.input-as-bytes
 +alias eo3.aish.string-as-page
 +home https://github.com/yegor256/eo3-programs
 +package eo3.aish
@@ -18,12 +14,14 @@
           response-with-header
             response
             "Content-Type: text/plain"
-          txt.sprintf "Content-Length: %d" * s.as-bytes.size
+          tt.sprintf *1
+            "Content-Length: %d"
+            s.as-bytes.size
         s
 
   [] +> renders-http-response
     contains. > @
-      txt.text
+      tt.text
         response-as-bytes
           render.
             string-as-page "你好!"

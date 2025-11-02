@@ -10,11 +10,11 @@
 # for each element in the `line` collection, with the `widths` provided.
 [line widths] > tabular
   joined. > @
-    txt.text " "
+    tt.text " "
     mappedi.
-      structs.list
+      ss.list
         split.
-          txt.text line
+          tt.text line
           ","
       [p i] >>
         fixed > @
@@ -32,7 +32,7 @@
   # Prints lines from longer UTF-8 parts with various formatting.
   [] +> prints-line-from-longer-parts
     each. > @
-      structs.list
+      ss.list
         *
           *
             "L... A... 1844"

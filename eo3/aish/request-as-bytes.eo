@@ -6,14 +6,17 @@
 
 [request] > request-as-bytes
   joined. > @
-    txt.text ""
+    tt.text ""
     *
-      txt.sprintf *1
+      tt.sprintf *1
         "%s %s HTTP/1.1\r\n"
         request.method
         request path
       mapped.
-        structs.list request.headers
-        txt.sprintf "%s: %s\r\n" * (h.at 0) (h.at 1) > [h]
+        ss.list request.headers
+        tt.sprintf *1 >> [h]
+          "%s: %s\r\n"
+          h.at 0
+          h.at 1
       "\r\n"
       request.body

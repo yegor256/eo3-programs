@@ -6,9 +6,9 @@
 
 [r] > response-as-bytes
   joined. > @
-    txt.text ""
+    tt.text ""
     *
-      txt.sprintf *1
+      tt.sprintf *1
         "HTTP/1.1 %d %s\r\n"
         r.code
         switch *
@@ -17,7 +17,7 @@
           * true "?"
       mapped.
         ss.list r.headers
-        txt.sprintf *1 >> [h]
+        tt.sprintf *1 >> [h]
           "%s: %s\r\n"
           h.at 0
           h.at 1
@@ -26,7 +26,7 @@
 
   [] +> renders-response-to-bytes
     contains. > @
-      txt.text
+      tt.text
         response-as-bytes
           []
             404 > code

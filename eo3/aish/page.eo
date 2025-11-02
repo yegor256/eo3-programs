@@ -9,14 +9,14 @@
     response-with-сode > @
       response-with-body
         response
-        txt.sprintf *1
+        tt.sprintf *1
           "Page not found: %s"
           r.path
       404
 
   [] +> renders-simple-http-response
     contains. > @
-      txt.text
+      tt.text
         response-as-bytes
           page.render
             request

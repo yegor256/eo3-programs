@@ -32,7 +32,7 @@
         true
       io.stdout
         magenta
-          txt.sprintf *1
+          tt.sprintf *1
             "%s\n"
             tabular
               string

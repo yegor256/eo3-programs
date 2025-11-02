@@ -1,7 +1,5 @@
 +alias eo3.parsing-lines.assert
 +alias eo3.parsing-lines.magenta
-+alias org.eolang.io.stdout
-+alias org.eolang.txt.sprintf
 +home https://github.com/yegor256/eo3-programs
 +package eo3.parsing-lines
 +spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
@@ -12,11 +10,11 @@
 # A logger that prints a message and then passes control to the object.
 [fmt args kid] > log
   seq * > @
-    stdout
+    io.stdout
       magenta
-        sprintf *1
+        tt.sprintf *1
           "\033[90m%s\033[0m\n"
-          sprintf
+          tt.sprintf
             fmt
             args
     kid

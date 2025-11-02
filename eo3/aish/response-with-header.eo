@@ -6,6 +6,6 @@
 
 [@ h] > response-with-header
   with. > headers
-    structs.list
+    ss.list
       @.headers
     h

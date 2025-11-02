@@ -5,8 +5,8 @@
 +version 0.0.1
 
 # Tuple into headers.
-[t] > tuple-as-headers'
+[t] > tuple-as-headers
   headers > @
     mapped.
-      structs.list t
+      ss.list t
       ln.split ": " > [ln]

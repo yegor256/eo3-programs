@@ -5,6 +5,6 @@
 +version 0.0.1
 
 # String into headers.
-[s] > string-as-headers'
+[s] > string-as-headers
   tuple-as-headers > @
     s.split "\r\n"
