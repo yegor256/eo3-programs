@@ -4,8 +4,29 @@
 +spdx SPDX-License-Identifier: MIT
 +version 0.0.1
 
-# String into HTTP crumbs.
 [s] > string-as-crumbs
-  parts.at 0 > method
+  tt.upcased > method
+    parts.at 0
   parts.at 1 > path
-  s.split " " > parts
+  tt.nsplit s " " 3 > parts
+
+  [] +> takes-method
+    eq. > @
+      "GET"
+      method.
+        string-as-crumbs
+          "GET /index.html HTTP/1.1"
+
+  [] +> takes-path
+    eq. > @
+      "/index.html"
+      method.
+        string-as-crumbs
+          "GET /index.html HTTP/1.1"
+
+  [] +> takes-encoded-path
+    eq. > @
+      "/q=%28foo%29"
+      method.
+        string-as-crumbs
+          "GET /q=%28foo%29 HTTP/1.1"

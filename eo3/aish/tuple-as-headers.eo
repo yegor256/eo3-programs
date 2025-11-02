@@ -4,9 +4,26 @@
 +spdx SPDX-License-Identifier: MIT
 +version 0.0.1
 
-# Tuple into headers.
 [t] > tuple-as-headers
   headers > @
-    mapped.
-      ss.list t
-      ln.split ": " > [ln]
+    ss.mapped
+      t
+      nsplit ln ": " 2 > [ln]
+
+  [] +> finds-case-insensitive
+    has. > @
+      tuple-as-headers
+        *
+          "Connection: close"
+          "Content-Type: text/plain"
+      "connection"
+
+  [] +> gets-case-insensitive
+    eq. > @
+      "text/plain"
+      get.
+        tuple-as-headers
+          *
+            "Connection: close"
+            "Content-Type: text/plain"
+        "content-type"
