@@ -18,6 +18,6 @@
 
   [ls] > front
     ls.accept > @
-      par * > [s]
+      par * >> [s]
         http s.as-input s.as-output page
         front ls
