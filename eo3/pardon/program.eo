@@ -2,7 +2,7 @@
 +alias eo3.pardon.human
 +home https://github.com/yegor256/eo3-programs
 +package eo3.pardon
-+spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2026 Yegor Bugayenko
 +spdx SPDX-License-Identifier: MIT
 +version 0.0.1
 +unlint incorrect-number-of-attributes
