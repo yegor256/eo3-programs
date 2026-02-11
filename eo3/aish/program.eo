@@ -4,6 +4,20 @@
 +spdx SPDX-License-Identifier: MIT
 +version 0.0.1
 
-# Main program.
 [args] > program
-  QQ.io.stdout "ready to go\n" > @
+  "127.0.0.1" > host
+  8080 > port
+  listen. > @
+    nk.socket host port
+    seq * >> [ls]
+      io.stdout
+        tt.sprintf *1
+          "Serving on TCP port #%d (hit Ctrl-C to stop)...\n"
+          port
+      front ls
+
+  [ls] > front
+    ls.accept > @
+      par * >> [s]
+        http s.as-input s.as-output page
+        front ls

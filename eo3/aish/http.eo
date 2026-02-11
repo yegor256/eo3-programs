@@ -1,0 +1,30 @@
++home https://github.com/yegor256/eo3-programs
++package eo3.aish
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
++version 0.0.1
+
+[input output page] > http
+  io.copied > @
+    bytes-as-input
+      response-as-bytes
+        page.render
+          bytes-as-request
+            input-as-bytes
+              input
+    output
+
+  [] +> dispatches-simple-request
+    malloc.empty > @
+      seq * >> []
+        http
+          bytes-as-input
+            request-as-bytes
+              request
+          malloc-as-output m
+          string-as-page "Hello, world!"
+        eq.
+          200
+          code.
+            bytes-as-response
+              m

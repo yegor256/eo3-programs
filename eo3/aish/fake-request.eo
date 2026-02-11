@@ -1,0 +1,26 @@
++home https://github.com/yegor256/eo3-programs
++package eo3.aish
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
++version 0.0.1
+
+[method path headers] > fake-request
+  bytes-as-input > @
+    joined.
+      tt.text ""
+      *
+        tt.sprintf *1
+          "%s %s HTTP/1.1\r\n"
+          method
+          path
+        mapped.
+          ss.list headers
+          tt.sprintf *1 >> [h]
+            "%s: %s\r\n"
+            h.at 0
+            h.at 1
+        "\r\n"
+        ""
+
+  [path] > get
+    fake-request "GET" path * > @

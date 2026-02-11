@@ -1,0 +1,23 @@
++home https://github.com/yegor256/eo3-programs
++package eo3.aish
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
++version 0.0.1
+
+[] > page
+  [r] > render
+    response-with-сode > @
+      response-with-body
+        response
+        tt.sprintf *1
+          "Page not found: %s"
+          r.path
+      404
+
+  [] +> renders-simple-http-response
+    contains. > @
+      tt.text
+        response-as-bytes
+          page.render
+            request
+      "HTTP/1.1 404 Not found"

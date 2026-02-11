@@ -1,0 +1,32 @@
++home https://github.com/yegor256/eo3-programs
++package eo3.aish
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
++version 0.0.1
+
+[s] > string-as-crumbs
+  tt.upcased > method
+    parts.at 0
+  parts.at 1 > path
+  tt.nsplit s " " 3 > parts
+
+  [] +> takes-method
+    eq. > @
+      "GET"
+      method.
+        string-as-crumbs
+          "GET /index.html HTTP/1.1"
+
+  [] +> takes-path
+    eq. > @
+      "/index.html"
+      method.
+        string-as-crumbs
+          "GET /index.html HTTP/1.1"
+
+  [] +> takes-encoded-path
+    eq. > @
+      "/q=%28foo%29"
+      method.
+        string-as-crumbs
+          "GET /q=%28foo%29 HTTP/1.1"

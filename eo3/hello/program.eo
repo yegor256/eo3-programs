@@ -1,6 +1,3 @@
-+alias QQ.io.stdin
-+alias QQ.io.stdout
-+alias QQ.txt.sprintf
 +home https://github.com/yegor256/eo3-programs
 +package eo3.hello
 +spdx SPDX-FileCopyrightText: Copyright (c) 2022-2026 Yegor Bugayenko
@@ -10,10 +7,10 @@
 # The program asks user for his name and then says
 # "hello" using the name just provided.
 [args] > program
-  stdin.next-line > name!
+  io.stdin.next-line > name!
   seq * > @
-    stdout "What is your name? "
-    stdout
-      sprintf *1
+    io.stdout "What is your name? "
+    io.stdout
+      tt.sprintf *1
         "Hello, %s!\n"
         name

@@ -1,0 +1,29 @@
++alias eo3.aish.string-as-page
++home https://github.com/yegor256/eo3-programs
++package eo3.aish
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
++version 0.0.1
+
+# Plain text as a page.
+[s] > string-as-page
+  [] > @
+    [request] > render
+      response-with-body > @
+        response-with-header
+          response-with-header
+            response
+            "Content-Type: text/plain"
+          tt.sprintf *1
+            "Content-Length: %d"
+            s.as-bytes.size
+        s
+
+  [] +> renders-http-response
+    contains. > @
+      tt.text
+        response-as-bytes
+          render.
+            string-as-page "你好!"
+            request
+      "HTTP/1.1 200 OK"

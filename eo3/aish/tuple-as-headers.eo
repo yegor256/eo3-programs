@@ -1,0 +1,29 @@
++home https://github.com/yegor256/eo3-programs
++package eo3.aish
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
++version 0.0.1
+
+[t] > tuple-as-headers
+  headers > @
+    ss.mapped
+      t
+      nsplit ln ": " 2 > [ln]
+
+  [] +> finds-case-insensitive
+    has. > @
+      tuple-as-headers
+        *
+          "Connection: close"
+          "Content-Type: text/plain"
+      "connection"
+
+  [] +> gets-case-insensitive
+    eq. > @
+      "text/plain"
+      get.
+        tuple-as-headers
+          *
+            "Connection: close"
+            "Content-Type: text/plain"
+        "content-type"

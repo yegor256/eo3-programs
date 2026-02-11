@@ -1,0 +1,43 @@
++home https://github.com/yegor256/eo3-programs
++package eo3.aish
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
++version 0.0.1
+
+[b] > bytes-as-request
+  tt.nsplit b "\r\n\r\n" 2 > parts
+  parts.at 0 > head
+  parts.at 1 > body
+  tuple-as-headers > headers
+    ss.skipped
+      tt.split head "\r\n"
+      1
+  string-as-crumbs > crumbs
+    at.
+      tt.nsplit head "\r\n" 2
+      0
+  crumbs.method > method
+  crumbs.path > path
+
+  [] +> takes-method
+    eq. > @
+      method.
+        bytes-as-request
+          "GET /hello.html HTTP/1.1"
+      "GET"
+
+  [] +> takes-path
+    eq. > @
+      method.
+        bytes-as-request
+          "GET /hello.html HTTP/1.1"
+      "/hello.html"
+
+  [] +> takes-one-header
+    eq. > @
+      "text/plain"
+      get.
+        headers.
+          bytes-as-request
+            "GET /hello.html HTTP/1.1\r\nContent-Type: text/plain\r\n\r\nHello, world!"
+        "content-type"

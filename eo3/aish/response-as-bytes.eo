@@ -1,0 +1,35 @@
++home https://github.com/yegor256/eo3-programs
++package eo3.aish
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
++version 0.0.1
+
+[r] > response-as-bytes
+  joined. > @
+    tt.text ""
+    *
+      tt.sprintf *1
+        "HTTP/1.1 %d %s\r\n"
+        r.code
+        switch *
+          * (code.eq 200) "OK"
+          * (code.eq 404) "Not found"
+          * true "?"
+      mapped.
+        ss.list r.headers
+        tt.sprintf *1 >> [h]
+          "%s: %s\r\n"
+          h.at 0
+          h.at 1
+      "\r\n"
+      r.body
+
+  [] +> renders-response-to-bytes
+    contains. > @
+      tt.text
+        response-as-bytes
+          []
+            404 > code
+            * > headers
+            -- > body
+      "HTTP/1.1 404 Not found"

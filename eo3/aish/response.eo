@@ -1,0 +1,25 @@
++home https://github.com/yegor256/eo3-programs
++package eo3.aish
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2025 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
++version 0.0.1
+
+[] > response
+  200 > code
+  * > headers
+  -- > body
+
+  [] +> has-code
+    eq. > @
+      200
+      response.code
+
+  [] +> has-empty-headers
+    eq. > @
+      0
+      response.headers.size
+
+  [] +> has-empty-body
+    eq. > @
+      0
+      response.body.length
