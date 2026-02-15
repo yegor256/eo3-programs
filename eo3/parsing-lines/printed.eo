@@ -32,7 +32,7 @@
         true
       QQ.io.stdout
         magenta
-          QQ.txt.sprintf *1
+          QQ.tt.sprintf *1
             "%s\n"
             tabular
               string

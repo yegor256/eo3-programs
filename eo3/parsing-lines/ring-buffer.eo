@@ -50,9 +50,8 @@
     if. > @
       length.eq 0
       start
-      mod.
-        QQ.math.real
-          start.plus length
+      QQ.ms.mod
+        start.plus length
         block.size
 
   # This is a boolean indicator of whether the tail of the buffer is ahead of its head,
@@ -74,9 +73,8 @@
   [dec] > beheaded
     ring-buffer > @
       block
-      mod.
-        QQ.math.real
-          start.plus dec
+      QQ.ms.mod
+        start.plus dec
         block.size
       length.minus dec
 

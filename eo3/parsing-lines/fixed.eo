@@ -11,7 +11,7 @@
 [txt width] > fixed
   if. > @
     txt.length.gt width
-    QQ.txt.sprintf *1
+    QQ.tt.sprintf *1
       "%s..."
       txt.slice
         0
