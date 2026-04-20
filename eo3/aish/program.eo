@@ -6,4 +6,4 @@
 
 # Main program.
 [args] > program
-  QQ.io.stdout "ready to go\n" > @
+  io.stdout "ready to go\n" > @

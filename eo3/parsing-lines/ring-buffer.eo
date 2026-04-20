@@ -50,7 +50,7 @@
     if. > @
       length.eq 0
       start
-      QQ.ms.mod
+      ms.mod
         start.plus length
         block.size
 
@@ -73,7 +73,7 @@
   [dec] > beheaded
     ring-buffer > @
       block
-      QQ.ms.mod
+      ms.mod
         start.plus dec
         block.size
       length.minus dec

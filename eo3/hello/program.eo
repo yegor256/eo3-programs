@@ -1,6 +1,6 @@
-+alias QQ.io.stdin
-+alias QQ.io.stdout
-+alias QQ.tt.sprintf
++alias io.stdin
++alias io.stdout
++alias tt.sprintf
 +home https://github.com/yegor256/eo3-programs
 +package eo3.hello
 +spdx SPDX-FileCopyrightText: Copyright (c) 2022-2026 Yegor Bugayenko

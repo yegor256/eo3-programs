@@ -30,9 +30,9 @@
             0
             tail
         true
-      QQ.io.stdout
+      io.stdout
         magenta
-          QQ.tt.sprintf *1
+          tt.sprintf *1
             "%s\n"
             tabular
               string

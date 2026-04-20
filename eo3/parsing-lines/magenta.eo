@@ -8,11 +8,11 @@
 # with magenta color.
 [txt] > magenta
   replaced. > @
-    QQ.txt.text
+    txt.text
       txt
     compiled.
-      QQ.txt.regex
+      txt.regex
         string
           2F-00-2F
-    QQ.txt.text
+    txt.text
       "\033[95m?\033[0m"

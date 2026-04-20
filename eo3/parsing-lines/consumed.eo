@@ -49,7 +49,7 @@
                 [ring]
                   ring.beheaded > @
                     ring.length
-    QQ.io.bytes-as-input > i
+    io.bytes-as-input > i
       "just a few words here".as-bytes
 
   # Reads simple stream and passes ring buffer to a simple consumer.
@@ -73,7 +73,7 @@
           assert
             i.bts.size
             s.as-number
-    QQ.io.bytes-as-input > i
+    io.bytes-as-input > i
       """
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n
       Duis sit amet tincidunt est.\n Phasellus condimentum dui at

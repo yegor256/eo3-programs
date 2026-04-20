@@ -7,5 +7,5 @@
 # This is the main object, with the program itself, to be executed
 # from the command line.
 [args] > program
-  QQ.io.stdout > @
+  io.stdout > @
     "Hello, world!\n"

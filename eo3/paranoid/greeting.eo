@@ -8,7 +8,7 @@
 [out human] > greeting
   human.name > n!
   out > @
-    QQ.tt.sprintf *1
+    tt.sprintf *1
       "Hello, %s!?\n"
       if.
         n.eq "Walter"
