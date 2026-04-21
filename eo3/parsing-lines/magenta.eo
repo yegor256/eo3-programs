@@ -7,12 +7,10 @@
 # Highlights all unprintable characters in the string
 # with magenta color.
 [txt] > magenta
-  replaced. > @
-    txt.text
-      txt
+  tt.replaced > @
+    txt
     compiled.
-      txt.regex
+      tt.regex
         string
           2F-00-2F
-    txt.text
-      "\033[95m?\033[0m"
+    "\033[95m?\033[0m"

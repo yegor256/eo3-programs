@@ -13,18 +13,17 @@
     txt.length.gt width
     tt.sprintf *1
       "%s..."
-      txt.slice
+      tt.slice
+        txt
         0
         width.minus 3
     if.
       txt.length.lt width
-      chained.
-        txt.text
-          txt
+      tt.chained
+        txt
         *
-          repeated.
-            txt.text
-              " "
+          tt.repeated
+            " "
             width.minus txt.length
       txt
 
@@ -72,7 +71,7 @@
         "Михаил Афанасьевич Булгаков"
         6
     each. > @
-      structs.list
+      ss.list
         cases
       [case]
         assert > @
