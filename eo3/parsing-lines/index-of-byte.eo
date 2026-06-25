@@ -41,7 +41,7 @@
         "John Malkovich".as-bytes
         "J".as-bytes
 
-  # Finds the second byte.
+  # Finds the second byte in the sequence.
   [] +> finds-second-byte
     assert > @
       1
