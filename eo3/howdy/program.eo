@@ -7,7 +7,7 @@
 +version 0.0.1
 +unlint incorrect-number-of-attributes
 
-# Main program.
+# The main EO program entry point.
 [args] > program
   greeting > @
     io.stdout
