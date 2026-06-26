@@ -14,3 +14,13 @@
         n.eq "Walter"
         error "You't can enter!"
         n
+
+  # Verifies that greeting formats the name for non-blocked humans.
+  [] +> formats-name-for-non-blocked-human
+    eq. > @
+      greeting
+        [s] >>
+          s > @
+        [] >>
+          "Alice" > name
+      "Hello, Alice!?\n"

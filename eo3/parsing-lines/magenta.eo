@@ -14,3 +14,10 @@
         string
           2F-00-2F
     "\033[95m?\033[0m"
+
+  # Tests that magenta returns plain text without any changes.
+  [] +> returns-plain-text-unchanged
+    eq. > @
+      magenta
+        "hello"
+      "hello"

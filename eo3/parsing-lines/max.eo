@@ -10,3 +10,11 @@
     b.gt a
     b
     a
+
+  # Tests that max returns the larger of two given numbers.
+  [] +> selects-larger-of-two-numbers
+    eq. > @
+      max
+        3
+        5
+      5
