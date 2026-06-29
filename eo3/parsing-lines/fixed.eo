@@ -61,18 +61,17 @@
 
   # Formats different cases with UTF-8 text parts.
   [] +> formats-different-cases
-    * > cases
-      *
-        "Oscar Fingal O'ls..."
-        "Oscar Fingal O'ls Wilde"
-        20
-      *
-        "Мих..."
-        "Михаил Афанасьевич Булгаков"
-        6
     each. > @
       ss.list
-        cases
+        *
+          *
+            "Oscar Fingal O'ls..."
+            "Oscar Fingal O'ls Wilde"
+            20
+          *
+            "Мих..."
+            "Михаил Афанасьевич Булгаков"
+            6
       [case]
         assert > @
           case.at 0

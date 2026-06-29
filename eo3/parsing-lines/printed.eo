@@ -15,10 +15,6 @@
 # without the line just printed and removed. If there is no line available for
 # printing, the same `ring` is returned.
 [ring] > printed
-  as-number. > tail
-    index-of-byte > t-as-bytes!
-      ring.content
-      0A-
   if. > @
     tail.lt 0
     ring
@@ -43,6 +39,10 @@
       beheaded.
         ring
         tail.plus 1
+  as-number. > tail
+    index-of-byte > raw!
+      ring.content
+      0A-
 
   # Prints a single line from the buffer.
   [] +> prints-single-line

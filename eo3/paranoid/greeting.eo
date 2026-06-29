@@ -2,11 +2,11 @@
 +package eo3.paranoid
 +spdx SPDX-FileCopyrightText: Copyright (c) 2022-2026 Yegor Bugayenko
 +spdx SPDX-License-Identifier: MIT
++unlint redundant-object
 +version 0.0.1
 
 # Greets the human with a formatted message.
 [out human] > greeting
-  human.name > n!
   out > @
     tt.sprintf *1
       "Hello, %s!?\n"
@@ -14,6 +14,7 @@
         n.eq "Walter"
         error "You't can enter!"
         n
+  human.name > n!
 
   # Verifies that greeting formats the name for non-blocked humans.
   [] +> formats-name-for-non-blocked-human

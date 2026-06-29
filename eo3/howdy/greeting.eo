@@ -2,6 +2,7 @@
 +package eo3.howdy
 +spdx SPDX-FileCopyrightText: Copyright (c) 2022-2026 Yegor Bugayenko
 +spdx SPDX-License-Identifier: MIT
++unlint redundant-object
 +version 0.0.1
 
 # Greets the human with a formatted message.

@@ -8,10 +8,10 @@
 # The program asks user for his name and then says
 # "hello" using the name just provided.
 [args] > program
-  io.stdin.next-line > name!
   seq * > @
     io.stdout "What is your name? "
     io.stdout
       tt.sprintf *1
         "Hello, %s!\n"
         name
+  io.stdin.next-line > name!

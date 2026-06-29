@@ -11,12 +11,12 @@
   malloc.of > name!
     6
     [m] >>
-      appellation in out > a!
       seq * > @
         try
           [] >>
             m.put a > @
           [e] >>
             m.put "noname" > @
-          true > []
+          true
         m.get
+      appellation in out > a!

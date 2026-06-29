@@ -15,10 +15,10 @@
         m.put 0
         while
           [i] >>
-            appellation in out > a!
             seq * > @
               m.write 0 a.size
               m.write 8 a
               a.eq ""
+            appellation in out > a!
           [i] >>
             m.read 8 (m.read 0 8) > @

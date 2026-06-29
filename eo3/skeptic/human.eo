@@ -10,10 +10,8 @@
 [in out] > human
   go.to > name!
     [g] >>
-      compiled. > re
-        tt.regex "/[A-Z][a-z]+/"
-      appellation in out > a!
       if. > @
-        re.matches a
+        (tt.regex "/[A-Z][a-z]+/").compiled.matches a
         g.forward a
         g.backward
+      appellation in out > a!
