@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: Copyright (c) 2022-2026 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 
-EO_VERSION=0.61.2
+EO_VERSION=0.61.3
 HOME_VERSION=$(EO_VERSION)
 EOC_VERSION=0.35.2
 
@@ -14,7 +14,7 @@ EO = $(shell find eo3 -type f -name '*.eo')
 JAR = .eoc/eoc.jar
 PROGRAMS = $(shell find eo3 -mindepth 1 -maxdepth 1 -type d -exec basename {} \;)
 EXITS = $(shell echo $(PROGRAMS) | awk '{for(i=1;i<=NF;i++) $$i=".exits/"$$i".txt"}1')
-OPTS = --verbose --easy --blind --no-color --batch --pin "$(EOC_VERSION)" --parser "$(EO_VERSION)" --home-tag "$(HOME_VERSION)"
+OPTS = --verbose --no-color --batch --pin "$(EOC_VERSION)" --parser "$(EO_VERSION)" --home-tag "$(HOME_VERSION)"
 
 all: .passed.txt $(EXITS)
 

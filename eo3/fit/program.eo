@@ -4,8 +4,8 @@
 +package eo3.fit
 +spdx SPDX-FileCopyrightText: Copyright (c) 2022-2026 Yegor Bugayenko
 +spdx SPDX-License-Identifier: MIT
++unlint unit-test-missing
 +version 0.0.1
-+unlint incorrect-number-of-attributes
 
 # The main EO program entry point.
 [args] > program

@@ -9,3 +9,8 @@
 [args] > program
   io.stdout > @
     "Hello, world!\n"
+
+  # Tests that the program prints hello world to console.
+  [] +> prints-hello-world
+    program > @
+      *

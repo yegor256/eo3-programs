@@ -10,3 +10,11 @@
     a.gt b
     b
     a
+
+  # Tests that min returns the smaller of two given numbers.
+  [] +> selects-smaller-of-two-numbers
+    eq. > @
+      min
+        3
+        5
+      3

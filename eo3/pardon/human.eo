@@ -3,6 +3,7 @@
 +package eo3.pardon
 +spdx SPDX-FileCopyrightText: Copyright (c) 2022-2026 Yegor Bugayenko
 +spdx SPDX-License-Identifier: MIT
++unlint unit-test-missing
 +version 0.0.1
 
 # A human interacting via stdin/stdout.
@@ -14,10 +15,10 @@
         m.put 0
         while
           [i] >>
-            appellation in out > a!
             seq * > @
               m.write 0 a.size
               m.write 8 a
               a.eq ""
+            appellation in out > a!
           [i] >>
             m.read 8 (m.read 0 8) > @
