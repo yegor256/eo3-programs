@@ -1,8 +1,10 @@
++alias eo3.parsing-lines.assert
++alias eo3.hello.fake-stdin
++alias eo3.hello.fake-stdout
 +home https://github.com/yegor256/eo3-programs
 +package eo3.pardon
 +spdx SPDX-FileCopyrightText: Copyright (c) 2022-2026 Yegor Bugayenko
 +spdx SPDX-License-Identifier: MIT
-+unlint unit-test-missing
 +version 0.0.1
 
 # A name entered by a human via stdin.
@@ -10,3 +12,11 @@
   seq * > @
     out "What is your name? "
     in.next-line
+
+  [] +> asks-for-user-name
+    assert > @
+      name
+      appellation
+        fake-stdin name
+        fake-stdout
+    "Jeff Lebowski" > name

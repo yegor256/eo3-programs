@@ -1,0 +1,10 @@
++home https://github.com/yegor256/eo3-programs
++package eo3.hello
++spdx SPDX-FileCopyrightText: Copyright (c) 2022-2026 Yegor Bugayenko
++spdx SPDX-License-Identifier: MIT
++unlint unit-test-missing
++version 0.0.1
+
+# Fake stdout, for testing, to immitate real STDOUT.
+[out] > fake-stdout
+  true > @

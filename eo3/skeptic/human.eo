@@ -1,17 +1,28 @@
 +alias eo3.pardon.appellation
++alias eo3.parsing-lines.assert
++alias eo3.hello.fake-stdin
++alias eo3.hello.fake-stdout
 +home https://github.com/yegor256/eo3-programs
 +package eo3.skeptic
 +spdx SPDX-FileCopyrightText: Copyright (c) 2022-2026 Yegor Bugayenko
 +spdx SPDX-License-Identifier: MIT
-+unlint unit-test-missing
 +version 0.0.1
 
 # A human interacting via stdin/stdout.
 [in out] > human
-  go.to > name!
-    [g] >>
-      if. > @
-        (tt.regex "/[A-Z][a-z]+/").compiled.matches a
-        g.forward a
-        g.backward
+  if. > name!
+    matches.
+      compiled.
+        tt.regex "/[A-Z][a-z]+/"
       appellation in out > a!
+    a
+    human in out
+
+  [] +> accepts-good-name
+    assert > @
+      jeff
+      name.
+        human
+          fake-stdin jeff
+          fake-stdout
+    "Jeffrey" > jeff
