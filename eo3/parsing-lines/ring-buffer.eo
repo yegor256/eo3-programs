@@ -138,27 +138,26 @@
           fit
             data.size.plus length
         block.write cursor data
-        seq
-          *
-            write.
-              block
-              cursor
-              data.slice
-                0
-                min
-                  data.size
-                  block.size.minus cursor
-            write.
-              block
+        seq *
+          write.
+            block
+            cursor
+            data.slice
               0
-              data.slice
-                min
-                  data.size
+              min
+                data.size
+                block.size.minus cursor
+          write.
+            block
+            0
+            data.slice
+              min
+                data.size
+                block.size.minus cursor
+              max
+                0
+                data.size.minus
                   block.size.minus cursor
-                max
-                  0
-                  data.size.minus
-                    block.size.minus cursor
       ring-buffer
         block
         start
