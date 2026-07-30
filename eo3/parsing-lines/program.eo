@@ -8,10 +8,6 @@
 +unlint unit-test-missing
 +version 0.0.1
 
-# The main object with the program itself, to be executed
-# from the command line. It reads lines from a text file one
-# by one and reformats them, printing out a tabular form of fields
-# from the text file.
 [args] > program
   malloc.empty > @
     [m] >>

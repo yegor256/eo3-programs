@@ -5,7 +5,6 @@
 +unlint unit-test-missing
 +version 0.0.1
 
-# A human interacting via stdin/stdout.
 [in out] > human
   seq * > name!
     out "What is your name? "

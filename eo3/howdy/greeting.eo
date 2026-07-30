@@ -5,14 +5,12 @@
 +unlint redundant-object
 +version 0.0.1
 
-# Greets the human with a formatted message.
 [out human] > greeting
   out > @
     tt.sprintf *1
       "Hello, %s!\nHowdy, %1$s!?\n"
       human.name
 
-  # Verifies that greeting formats the name into a hello-howdy message.
   [] +> formats-name-into-hello-howdy-message
     eq. > @
       greeting

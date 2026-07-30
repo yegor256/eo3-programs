@@ -4,14 +4,12 @@
 +spdx SPDX-License-Identifier: MIT
 +version 0.0.1
 
-# The larger of two given numbers.
 [a b] > max
   if. > @
     b.gt a
     b
     a
 
-  # Tests that max returns the larger of two given numbers.
   [] +> selects-larger-of-two-numbers
     eq. > @
       max

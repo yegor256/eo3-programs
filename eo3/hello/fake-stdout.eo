@@ -5,6 +5,5 @@
 +unlint unit-test-missing
 +version 0.0.1
 
-# Fake stdout, for testing, to immitate real STDOUT.
 [out] > fake-stdout
   true > @

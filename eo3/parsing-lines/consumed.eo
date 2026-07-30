@@ -7,11 +7,6 @@
 +spdx SPDX-License-Identifier: MIT
 +version 0.0.1
 
-# A consumer of the input ring that passes it to the provided
-# consumer. The consumer is an object that accepts
-# the input buffer and the ring buffer as arguments. It
-# reads the input buffer and updates the ring buffer accordingly. It
-# returns the ring.
 [input ring consumer] > consumed
   log > @
     "Consuming %d bytes, ring size is %d/%d (%d+%d)"
@@ -34,7 +29,6 @@
             input.buffer
         consumer
 
-  # Reads simple stream and passes ring buffer to a simple consumer.
   [] +> consumes-short-stream
     assert > @
       0
@@ -52,7 +46,6 @@
     io.bytes-as-input > i
       "just a few words here".as-bytes
 
-  # Reads simple stream and passes ring buffer to a simple consumer.
   [] +> consumes-long-stream
     malloc.for > @
       0

@@ -6,8 +6,6 @@
 +spdx SPDX-License-Identifier: MIT
 +version 0.0.1
 
-# An abstraction of a line formatted with tabular columns
-# for each element in the `line` collection, with the `widths` provided.
 [line widths] > tabular
   tt.joined > @
     " "
@@ -21,7 +19,6 @@
           p
           widths.at i
 
-  # Prints a simple line with tabular formatting.
   [] +> prints-simple-line
     assert > @
       "Joh... J... John Travolta   "
@@ -29,7 +26,6 @@
         "John Malkovich,Johnny Depp,John Travolta"
         * 6 4 16
 
-  # Prints lines from longer UTF-8 parts with various formatting.
   [] +> prints-line-from-longer-parts
     each. > @
       ss.list *

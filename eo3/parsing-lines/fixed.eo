@@ -5,9 +5,6 @@
 +spdx SPDX-License-Identifier: MIT
 +version 0.0.1
 
-# A piece of text in a fixed-width box. If the text is larger
-# than the width provided, it becomes shorter with
-# an ellipsis at the end.
 [txt width] > fixed
   if. > @
     txt.length.gt width
@@ -27,7 +24,6 @@
             width.minus txt.length
       txt
 
-  # Makes the text shorter with an ellipsis at the end when it is too long.
   [] +> makes-text-shorter
     assert > @
       "Михаил Афанась..."
@@ -35,7 +31,6 @@
         "Михаил Афанасьевич"
         17
 
-  # Makes the text longer by filling the difference with spaces when it is too short.
   [] +> makes-text-longer
     assert > @
       "Булгаков    "
@@ -43,7 +38,6 @@
         "Булгаков"
         12
 
-  # Keeps the text the same size when it is exactly the required length.
   [] +> keeps-text-same-size
     assert > @
       "Дюма"
@@ -51,7 +45,6 @@
         "Дюма"
         4
 
-  # Makes empty text longer by filling it with spaces.
   [] +> makes-empty-text-longer
     assert > @
       "    "
@@ -59,7 +52,6 @@
         ""
         4
 
-  # Formats different cases with UTF-8 text parts.
   [] +> formats-different-cases
     each. > @
       ss.list

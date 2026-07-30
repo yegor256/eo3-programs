@@ -5,7 +5,6 @@
 +unlint redundant-object
 +version 0.0.1
 
-# Greets the human with a formatted message.
 [out human] > greeting
   out > @
     tt.sprintf *1
@@ -16,7 +15,6 @@
         n
   human.name > n!
 
-  # Verifies that greeting formats the name for non-blocked humans.
   [] +> formats-name-for-non-blocked-human
     eq. > @
       greeting

@@ -5,7 +5,5 @@
 +unlint unit-test-missing
 +version 0.0.1
 
-# Fake stdin, for testing, to immitate real STDIN of just one line.
 [in] > fake-stdin
-  # The one line supposedly returned by the STDIN.
   in > [] > next-line
