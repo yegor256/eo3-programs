@@ -7,7 +7,7 @@
 
 [out human] > greeting
   out > @
-    tt.sprintf *1
+    string.printf *1
       "Hello, %s!?\n"
       if.
         n.eq "Walter"

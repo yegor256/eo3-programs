@@ -22,9 +22,9 @@
             0
             tail
         true
-      io.stdout
+      stdout
         magenta
-          tt.sprintf *1
+          string.printf *1
             "%s\n"
             tabular
               string

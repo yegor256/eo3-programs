@@ -5,7 +5,7 @@
 +version 0.0.1
 
 [args] > program
-  io.stdout > @
+  stdout > @
     "Hello, world!\n"
 
   [] +> prints-hello-world

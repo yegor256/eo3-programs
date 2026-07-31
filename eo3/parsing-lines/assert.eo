@@ -1,4 +1,3 @@
-+alias tt.sprintf
 +home https://github.com/yegor256/eo3-programs
 +package eo3.parsing-lines
 +spdx SPDX-FileCopyrightText: Copyright (c) 2022-2026 Yegor Bugayenko
@@ -14,10 +13,10 @@
         and.
           expected.as-bytes.size.eq actual.as-bytes.size
           expected.as-bytes.size.eq 8
-        sprintf
+        string.printf
           "Expected %d but received %d"
           * expected actual
-        sprintf
+        string.printf
           "Expected \"%s\" but received \"%s\""
           * expected actual
 

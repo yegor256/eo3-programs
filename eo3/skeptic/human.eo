@@ -12,7 +12,7 @@
   if. > name!
     matches.
       compiled.
-        tt.regex "/[A-Z][a-z]+/"
+        regex. "/[A-Z][a-z]+/"
       appellation in out > a!
     a
     human in out

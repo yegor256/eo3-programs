@@ -23,7 +23,7 @@
     if. > @
       length.eq 0
       start
-      ms.mod
+      mod.
         start.plus length
         block.size
 
@@ -35,7 +35,7 @@
   [dec] > beheaded
     ring-buffer > @
       block
-      ms.mod
+      mod.
         start.plus dec
         block.size
       length.minus dec

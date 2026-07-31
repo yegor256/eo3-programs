@@ -8,18 +8,18 @@
 [txt width] > fixed
   if. > @
     txt.length.gt width
-    tt.sprintf *1
+    string.printf *1
       "%s..."
-      tt.slice
+      slice.
         txt
         0
         width.minus 3
     if.
       txt.length.lt width
-      tt.chained
+      chained.
         txt
         *
-          tt.repeated
+          repeated.
             " "
             width.minus txt.length
       txt
@@ -54,7 +54,7 @@
 
   [] +> formats-different-cases
     each. > @
-      ss.list
+      list.
         *
           *
             "Oscar Fingal O'ls..."

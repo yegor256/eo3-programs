@@ -43,7 +43,7 @@
                 [ring]
                   ring.beheaded > @
                     ring.length
-    io.bytes-as-input > i
+    as-input. > i
       "just a few words here".as-bytes
 
   [] +> consumes-long-stream
@@ -66,7 +66,7 @@
           assert
             i.bts.size
             s.as-number
-    io.bytes-as-input > i
+    as-input. > i
       """
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n
       Duis sit amet tincidunt est.\n Phasellus condimentum dui at

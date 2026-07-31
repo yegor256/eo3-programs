@@ -5,10 +5,10 @@
 +version 0.0.1
 
 [txt] > magenta
-  tt.replaced > @
+  replaced. > @
     txt
     compiled.
-      tt.regex
+      regex.
         string
           2F-00-2F
     "\033[95m?\033[0m"

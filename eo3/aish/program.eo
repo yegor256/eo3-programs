@@ -5,7 +5,7 @@
 +version 0.0.1
 
 [args] > program
-  io.stdout "ready to go\n" > @
+  stdout "ready to go\n" > @
 
   [] +> prints-ready-message
     program > @

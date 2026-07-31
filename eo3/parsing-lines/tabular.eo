@@ -7,11 +7,11 @@
 +version 0.0.1
 
 [line widths] > tabular
-  tt.joined > @
+  joined. > @
     " "
-    ss.mappedi
-      ss.list
-        tt.split
+    mappedi.
+      list.
+        split.
           line
           ","
       [p i] >>
@@ -28,7 +28,7 @@
 
   [] +> prints-line-from-longer-parts
     each. > @
-      ss.list *
+      *
         *
           "L... A... 1844"
           "Le Comte de Monte-Cristo,Alexandre Dumas,1844"

@@ -1,7 +1,5 @@
 +alias eo3.parsing-lines.assert
 +alias eo3.parsing-lines.magenta
-+alias io.stdout
-+alias tt.sprintf
 +home https://github.com/yegor256/eo3-programs
 +package eo3.parsing-lines
 +spdx SPDX-FileCopyrightText: Copyright (c) 2022-2026 Yegor Bugayenko
@@ -12,9 +10,9 @@
   seq * > @
     stdout
       magenta
-        sprintf *1
+        string.printf *1
           "\033[90m%s\033[0m\n"
-          sprintf
+          string.printf
             fmt
             args
     kid

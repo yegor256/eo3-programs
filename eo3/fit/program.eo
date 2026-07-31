@@ -9,5 +9,5 @@
 
 [args] > program
   greeting > @
-    io.stdout
-    human io.stdin io.stdout
+    stdout
+    human stdin stdout
